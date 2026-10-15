@@ -1,0 +1,78 @@
+{% extends 'dashboard/base.html' %}
+{% load i18n %}
+{% load jalali_tags %}
+
+{% block title %}{{ page_title }}{% endblock title %}
+
+{% block content %}
+{% if poems %}
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>{% trans "ID" %}</th>
+                    <th>{% trans "Name" %}</th>
+                    <th>{% trans "Poem Type" %}</th>
+                    <th>{% trans "Author" %}</th>
+                    <th>{% trans "Status" %}</th>
+                    <th>{% trans "Created" %}</th>
+                    <th>{% trans "Actions" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for poem in poems %}
+                <tr>
+                    <td>{{ poem.pk }}</td>
+                    <td>
+                        <a href="{% url 'dashboard:poem_detail' pk=poem.pk %}">
+                            {{ poem.name|default:poem.text|truncatechars:40 }}
+                        </a>
+                    </td>
+                    <td>
+                        <div class="mb-3">
+                            {% if poem.poem_type == "ghazal" %}
+                                {% trans "Ghazal" %}
+                            {% elif poem.poem_type == "masnavi" %}
+                                {% trans "Masnavi" %}
+                            {% elif poem.poem_type == "robaee" %}
+                                {% trans "Robaee" %}
+                                
+                            {% elif poem.poem_type == "ghasideh" %}
+                                {% trans "Ghasideh" %}
+                                
+                            {% elif poem.poem_type == "nimaee" %}
+                                {% trans "Nimaee" %}
+                                
+                            {% elif poem.poem_type == "sepid" %}
+                                {% trans "Sepid" %}    
+                            {% endif %}   
+                        </div>
+                    </td>
+                    
+                    <td>{{ poem.author }}</td>
+                    <td>
+                        {% if poem.status == 'w' %}
+                            <span class="badge bg-warning text-dark">{% trans "Awaiting" %}</span>
+                        {% elif poem.status == 'a' %}
+                            <span class="badge bg-success">{% trans "Approved" %}</span>
+                        {% else %}
+                            <span class="badge bg-danger">{% trans "Rejected" %}</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ poem.created_at|to_jalali:"%Y/%m/%d" }}</td>
+                    <td>
+                        <a href="{% url 'dashboard:poem_detail' pk=poem.pk %}"
+                           class="btn btn-sm btn-outline-primary">
+                            <i class="bi bi-eye"></i>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endif %}
+
+{% include 'dashboard/partials/pagination.html' %}
+{% endblock content %}

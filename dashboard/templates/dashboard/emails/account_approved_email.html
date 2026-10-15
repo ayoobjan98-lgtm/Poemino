@@ -1,0 +1,12 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"></head>
+<body>
+    <p>{% blocktrans %}Dear {{ full_name }},{% endblocktrans %}</p>
+    <p>{% trans "Your registration has been reviewed and approved." %}</p>
+    <p>{% trans "Your content manager account is now active. You may log in using your username:" %} <strong>{{ username }}</strong></p>
+    <p><a href="{{ dashboard_url }}">{% trans "Go to Dashboard" %}</a></p>
+    <p>{% trans "Welcome aboard!" %}</p>
+</body>
+</html>

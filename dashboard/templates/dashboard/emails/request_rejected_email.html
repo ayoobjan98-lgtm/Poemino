@@ -1,0 +1,11 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"></head>
+<body>
+    <p>{% blocktrans %}Dear {{ full_name }},{% endblocktrans %}</p>
+    <p>{% trans "We regret to inform you that your request for content manager access has been declined." %}</p>
+    <p>{% trans "If you believe this was a mistake, please contact the site administrator." %}</p>
+    <p>{% trans "Thank you for your interest." %}</p>
+</body>
+</html>

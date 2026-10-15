@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Update Poem" %}{% endblock %}
+y78uhuih
+{% block content %}
+<div class="poem-card revealed" style="max-width: 700px; margin: 2rem auto;">
+    <div class="card-accent"></div>
+    <h2 class="poem-detail-title">{% trans "Update Poem" %}</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="mt-4">
+            <button type="submit" class="btn btn-warning">{% trans "Save Changes" %}</button>
+            <a href="{% url 'MakePoem:detail_poem' poem.pk %}" class="btn btn-outline-light ms-2">{% trans "Cancel" %}</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

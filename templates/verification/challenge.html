@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Verification Challenge" %}{% endblock title %}
+
+{% block content %}
+<div class="main-wrapper">
+    <div class="poem-card" style="opacity:1; transform:none; max-width:700px; margin:0 auto;">
+        <div class="card-accent"></div>
+        <h3 class="hero-title" style="font-size:2rem; margin-bottom:1rem;">{% trans "Verification Challenge" %}</h3>
+        
+        <div style="background:rgba(0,0,0,0.3); border-radius:16px; padding:1.5rem; margin-bottom:2rem;">
+            <p style="color:var(--gold-light); font-size:1.2rem; font-weight:bold; text-align:center;">
+                {% trans "Please read the following text aloud:" %}
+            </p>
+            <p id="challenge-text" style="color:#fff; font-size:1.4rem; text-align:center; margin-top:0.5rem;">{{ challenge }}</p>
+        </div>
+
+        <p style="color:#f5e7d3; text-align:center;">{% trans "Record a video of yourself reading the text." %}</p>
+
+        <form method="post" id="challenge-form">
+            {% csrf_token %}
+            <input type="hidden" name="video_data" id="video-data">
+            <input type="hidden" name="audio_data" id="audio-data">
+
+            <div class="text-center">
+                <video id="camera-preview" autoplay playsinline style="width:100%; max-width:500px; border-radius:16px; transform: scaleX(-1); display:none;"></video>
+                <canvas id="photo-canvas" style="display:none;"></canvas>
+                
+                <div style="margin-top:1rem;">
+                    <button type="button" class="btn-submit" id="start-camera">{% trans "Start Camera" %}</button>
+                    <button type="button" class="btn-submit" id="record-btn" disabled>{% trans "Record" %}</button>
+                    <span id="timer" style="color:var(--gold-light); margin-left:1rem; display:none;">0s</span>
+                </div>
+                <div id="status" class="small" style="color:#dbbf8e; margin-top:0.5rem;"></div>
+                <button type="submit" id="submit-btn" class="btn-submit mt-3" disabled>{% trans "Submit Verification" %}</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+(function() {
+    let stream = null;
+    let mediaRecorder = null;
+    let recordedChunks = [];
+    let audioChunks = [];
+    let videoBlob = null;
+    let audioBlob = null;
+    let audioRecorder = null;
+
+    const startBtn = document.getElementById('start-camera');
+    const recordBtn = document.getElementById('record-btn');
+    const submitBtn = document.getElementById('submit-btn');
+    const videoPreview = document.getElementById('camera-preview');
+    const timerSpan = document.getElementById('timer');
+    const statusDiv = document.getElementById('status');
+    const videoDataInput = document.getElementById('video-data');
+    const audioDataInput = document.getElementById('audio-data');
+
+    startBtn.addEventListener('click', async () => {
+        try {
+            stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+            videoPreview.srcObject = stream;
+            videoPreview.style.display = 'block';
+            startBtn.disabled = true;
+            recordBtn.disabled = false;
+        } catch(e) {
+            statusDiv.textContent = '{% trans "Camera/microphone access denied." %}';
+        }
+    });
+
+    recordBtn.addEventListener('click', () => {
+        recordedChunks = [];
+        audioChunks = [];
+        // Video recorder
+        mediaRecorder = new MediaRecorder(stream, { mimeType: 'video/webm' });
+        mediaRecorder.ondataavailable = e => { if(e.data.size>0) recordedChunks.push(e.data); };
+        mediaRecorder.onstop = () => {
+            videoBlob = new Blob(recordedChunks, { type: 'video/webm' });
+            const reader = new FileReader();
+            reader.onloadend = () => videoDataInput.value = reader.result;
+            reader.readAsDataURL(videoBlob);
+            statusDiv.textContent = '{% trans "Recording finished." %}';
+            submitBtn.disabled = false;
+        };
+        // Audio only recorder
+        let audioStream = new MediaStream(stream.getAudioTracks());
+        audioRecorder = new MediaRecorder(audioStream, { mimeType: 'audio/webm' });
+        audioRecorder.ondataavailable = e => { if(e.data.size>0) audioChunks.push(e.data); };
+        audioRecorder.onstop = () => {
+            audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+            const reader = new FileReader();
+            reader.onloadend = () => audioDataInput.value = reader.result;
+            reader.readAsDataURL(audioBlob);
+        };
+
+        mediaRecorder.start();
+        audioRecorder.start();
+        recordBtn.disabled = true;
+        timerSpan.style.display = 'inline';
+        let sec = 0;
+        timerSpan.textContent = sec + 's';
+        const interval = setInterval(() => {
+            sec++;
+            timerSpan.textContent = sec + 's';
+            if(sec >= 10) {  // record 10 seconds to ensure full sentence
+                clearInterval(interval);
+                mediaRecorder.stop();
+                audioRecorder.stop();
+                timerSpan.style.display = 'none';
+            }
+        }, 1000);
+    });
+
+    window.addEventListener('beforeunload', () => {
+        if(stream) stream.getTracks().forEach(t => t.stop());
+    });
+})();
+</script>
+{% endblock %}

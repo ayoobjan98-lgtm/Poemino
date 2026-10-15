@@ -1,0 +1,15 @@
+{% extends "errors/error_base.html" %}
+
+{% block title %}503 | سرویس در دسترس نیست{% endblock title %}
+
+{% block icon %}bi-tools{% endblock icon %}
+
+{% block error_code %}503{% endblock error_code %}
+
+{% block error_title %}سرویس موقتاً در دسترس نیست{% endblock error_title %}
+
+{% block error_message %}
+این سرویس در حال حاضر موقتاً در دسترس نیست. ممکن است عملیات نگهداری یا بروزرسانی در حال انجام باشد.
+{% endblock error_message %}
+
+{% block status_code %}503{% endblock status_code %}

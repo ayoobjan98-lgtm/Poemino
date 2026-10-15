@@ -1,0 +1,7 @@
+{% load i18n %}{% blocktrans %}Dear {{ full_name }},{% endblocktrans %}
+
+{% trans "We regret to inform you that your request for content manager access has been declined." %}
+
+{% trans "If you believe this was a mistake, please contact the site administrator." %}
+
+{% trans "Thank you for your interest." %}

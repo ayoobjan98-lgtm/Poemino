@@ -1,0 +1,286 @@
+{% load i18n %}
+
+<form method="get" action="" class="nav-search-filter d-flex align-items-center gap-1 flex-wrap"
+      id="navSearchFilterForm" autocomplete="off" novalidate>
+
+    <input
+        type="text"
+        id="mainSearchInput"
+        value="{% if request.GET.author %}{{ request.GET.author }}{% elif request.GET.title %}{{ request.GET.title }}{% elif request.GET.poem_date %}{{ request.GET.poem_date }}{% else %}{{ request.GET.q|default:'' }}{% endif %}"
+        placeholder="{% trans 'Search' %}"
+        class="nav-search-input form-control-sm"
+        style="width: clamp(120px, 16vw, 180px);"
+        aria-label="{% trans 'Search poems' %}"
+        dir="auto"
+    />
+
+    <select
+        id="poemTypeSelect"
+        class="form-select form-select-sm nav-search-input"
+        style="width: clamp(120px, 16vw, 180px); display:none;"
+        aria-label="{% trans 'Poem Type' %}"
+    >
+        <option value="">{% trans "Select poem type" %}</option>
+        {% for value, label in POEM_TYPES %}
+            <option value="{{ value }}" {% if request.GET.poem_type == value %}selected{% endif %}>{{ label }}</option>
+        {% endfor %}
+    </select>
+
+    <select
+        id="statusSelect"
+        class="form-select form-select-sm nav-search-input"
+        style="width: clamp(120px, 16vw, 180px); display:none;"
+        aria-label="{% trans 'Poem Status' %}"
+    >
+        <option value="">{% trans "Select poem status" %}</option>
+        {% for value, label in POEM_STATUS_CHOICES %}
+            <option value="{{ value }}" {% if request.GET.status == value %}selected{% endif %}>{{ label }}</option>
+        {% endfor %}
+    </select>
+
+    <div class="dropdown">
+        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button"
+                id="filterDropdownButton" data-bs-toggle="dropdown" aria-expanded="false"
+                aria-label="{% trans 'Filter poems' %}"
+                style="height: 28px; font-size: 0.8rem; padding: 2px 8px;">
+            {% trans "Filter" %}
+            <span id="filterCount" class="badge bg-secondary ms-1" style="font-size: 0.7rem;">
+                {% if request.GET.author or request.GET.title or request.GET.poem_type or request.GET.poem_date or request.GET.status %}1{% else %}0{% endif %}
+            </span>
+        </button>
+        <div class="dropdown-menu p-2" aria-labelledby="filterDropdownButton"
+             style="min-width: 220px; font-size: 0.85rem;">
+            <div class="form-check">
+                <input class="form-check-input filter-type-radio" type="radio" name="filter_type_ui"
+                       value="author" id="filterTypeAuthor"
+                       {% if request.GET.author %}checked{% endif %}>
+                <label class="form-check-label" for="filterTypeAuthor">{% trans "Author" %}</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input filter-type-radio" type="radio" name="filter_type_ui"
+                       value="title" id="filterTypeTitle"
+                       {% if request.GET.title %}checked{% endif %}>
+                <label class="form-check-label" for="filterTypeTitle">{% trans "Poem Title" %}</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input filter-type-radio" type="radio" name="filter_type_ui"
+                       value="poem_type" id="filterTypePoemType"
+                       {% if request.GET.poem_type %}checked{% endif %}>
+                <label class="form-check-label" for="filterTypePoemType">{% trans "Poem Type" %}</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input filter-type-radio" type="radio" name="filter_type_ui"
+                       value="poem_date" id="filterTypePoemDate"
+                       {% if request.GET.poem_date %}checked{% endif %}>
+                <label class="form-check-label" for="filterTypePoemDate">{% trans "Poem Date" %}</label>
+            </div>
+            {% if show_status_filter %}
+            <div class="form-check">
+                <input class="form-check-input filter-type-radio" type="radio" name="filter_type_ui"
+                       value="status" id="filterTypeStatus"
+                       {% if request.GET.status %}checked{% endif %}>
+                <label class="form-check-label" for="filterTypeStatus">{% trans "Poem Status" %}</label>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-sm btn-secondary"
+            style="height: 28px; padding: 2px 12px; font-size: 0.8rem;
+                   border-radius: 12px; background-color:#6c757d;">
+        {% trans "Search" %}
+    </button>
+
+    <div id="searchError" class="w-100 small text-danger mt-1" style="display:none;"></div>
+
+    {% if request.GET.author or request.GET.title or request.GET.poem_type or request.GET.poem_date or request.GET.status %}
+        <div class="w-100 d-flex flex-wrap gap-2 mt-2" id="active-filters">
+            {% if request.GET.author %}
+                <span class="filter-chip" data-key="author">
+                    {% trans "Author" %}: {{ request.GET.author }}
+                    <a href="#" class="chip-remove" aria-label="remove">×</a>
+                </span>
+            {% endif %}
+            {% if request.GET.title %}
+                <span class="filter-chip" data-key="title">
+                    {% trans "Poem Title" %}: {{ request.GET.title }}
+                    <a href="#" class="chip-remove" aria-label="remove">×</a>
+                </span>
+            {% endif %}
+            {% if request.GET.poem_type %}
+                <span class="filter-chip" data-key="poem_type">
+                    {% trans "Poem Type" %}: {{ request.GET.poem_type }}
+                    <a href="#" class="chip-remove" aria-label="remove">×</a>
+                </span>
+            {% endif %}
+            {% if request.GET.poem_date %}
+                <span class="filter-chip" data-key="poem_date">
+                    {% trans "Poem Date" %}: {{ request.GET.poem_date }}
+                    <a href="#" class="chip-remove" aria-label="remove">×</a>
+                </span>
+            {% endif %}
+            {% if request.GET.status %}
+                <span class="filter-chip" data-key="status">
+                    {% trans "Poem Status" %}: {{ request.GET.status }}
+                    <a href="#" class="chip-remove" aria-label="remove">×</a>
+                </span>
+            {% endif %}
+            <a href="?" class="btn btn-sm btn-outline-secondary">{% trans "Clear All" %}</a>
+        </div>
+    {% endif %}
+</form>
+
+<style>
+    .nav-search-filter .nav-search-input {
+        border: 1px solid #dee2e6;
+        border-radius: 6px;
+        padding: 2px 8px;
+        font-size: 0.8rem;
+        height: 28px;
+    }
+    .nav-search-filter .nav-search-input:focus {
+        outline: none;
+        border-color: #6c757d;
+        box-shadow: 0 0 0 2px rgba(108, 117, 125, 0.15);
+    }
+    .nav-search-filter .filter-chip {
+        background-color: #e0f2fe;
+        border: 1px solid #0284c7;
+        border-radius: 16px;
+        padding: 4px 10px;
+        font-size: 0.85rem;
+        color: #075985;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+    .nav-search-filter .filter-chip .chip-remove {
+        color: #0284c7;
+        font-weight: bold;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    @media (max-width: 991.98px) {
+        .nav-search-filter {
+            width: 100%;
+            flex-direction: column;
+            align-items: stretch;
+        }
+        .nav-search-filter .nav-search-input,
+        .nav-search-filter .dropdown,
+        .nav-search-filter button[type="submit"] {
+            width: 100% !important;
+            max-width: 100%;
+        }
+    }
+</style>
+
+<script>
+(function () {
+    'use strict';
+
+    var form = document.getElementById('navSearchFilterForm');
+    if (!form) return;
+
+    var searchInput    = document.getElementById('mainSearchInput');
+    var poemTypeSelect = document.getElementById('poemTypeSelect');
+    var statusSelect   = document.getElementById('statusSelect');
+    var errorBox       = document.getElementById('searchError');
+    var filterRadios   = form.querySelectorAll('.filter-type-radio');
+
+    function currentFilter() {
+        var r = form.querySelector('.filter-type-radio:checked');
+        return r ? r.value : '';
+    }
+
+    function setError(msg) {
+        if (!errorBox) return;
+        errorBox.textContent = msg || '';
+        errorBox.style.display = msg ? 'block' : 'none';
+    }
+
+    function updateUI() {
+        var active = currentFilter();
+
+        searchInput.style.display    = 'none';
+        poemTypeSelect.style.display = 'none';
+        statusSelect.style.display   = 'none';
+
+        if (active === 'poem_type') {
+            poemTypeSelect.style.display = 'inline-block';
+        } else if (active === 'status') {
+            statusSelect.style.display = 'inline-block';
+        } else {
+            searchInput.style.display = 'inline-block';
+            if (active === 'author') {
+                searchInput.placeholder = 'نام نویسنده';
+            } else if (active === 'title') {
+                searchInput.placeholder = 'عنوان شعر';
+            } else if (active === 'poem_date') {
+                searchInput.placeholder = 'تاریخ شمسی (مثلاً 1405/06/29)';
+            } else {
+                searchInput.placeholder = 'جستجو...';
+            }
+        }
+
+        var badge = document.getElementById('filterCount');
+        if (badge) badge.textContent = active ? '1' : '0';
+    }
+
+    filterRadios.forEach(function (radio) {
+        radio.addEventListener('change', function () {
+            searchInput.value    = '';
+            poemTypeSelect.value = '';
+            statusSelect.value   = '';
+            setError('');
+            updateUI();
+        });
+    });
+
+    searchInput.addEventListener('input', function () {
+        if (currentFilter() === 'poem_date') {
+            this.value = this.value
+                .replace(/[۰-۹]/g, function (d) { return '۰۱۲۳۴۵۶۷۸۹'.indexOf(d); })
+                .replace(/-/g, '/');
+        }
+    });
+
+    form.addEventListener('submit', function () {
+        setError('');
+
+        searchInput.removeAttribute('name');
+        poemTypeSelect.removeAttribute('name');
+        statusSelect.removeAttribute('name');
+
+        var active = currentFilter();
+
+        if (active === 'poem_type') {
+            poemTypeSelect.setAttribute('name', 'poem_type');
+        } else if (active === 'status') {
+            statusSelect.setAttribute('name', 'status');
+        } else if (active === 'author') {
+            searchInput.setAttribute('name', 'author');
+        } else if (active === 'title') {
+            searchInput.setAttribute('name', 'title');
+        } else if (active === 'poem_date') {
+            searchInput.setAttribute('name', 'poem_date');
+        } else {
+            searchInput.setAttribute('name', 'q');
+        }
+    });
+
+    form.querySelectorAll('.filter-chip').forEach(function (chip) {
+        var btn = chip.querySelector('.chip-remove');
+        if (!btn) return;
+        btn.addEventListener('click', function (e) {
+            e.preventDefault();
+            var url = new URL(window.location.href);
+            url.searchParams.delete(chip.getAttribute('data-key'));
+            url.searchParams.delete('page');
+            window.location.href = url.toString();
+        });
+    });
+
+    updateUI();
+})();
+</script>

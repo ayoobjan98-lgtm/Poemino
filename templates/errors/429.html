@@ -1,0 +1,15 @@
+{% extends "errors/error_base.html" %}
+
+{% block title %}429 | درخواست‌های بیش از حد{% endblock title %}
+
+{% block icon %}bi-speedometer2{% endblock icon %}
+
+{% block error_code %}429{% endblock error_code %}
+
+{% block error_title %}درخواست‌های بیش از حد{% endblock error_title %}
+
+{% block error_message %}
+تعداد درخواست‌های ارسال‌شده در مدت کوتاه بیش از حد مجاز است. لطفاً کمی صبر کنید و دوباره تلاش کنید.
+{% endblock error_message %}
+
+{% block status_code %}429{% endblock status_code %}

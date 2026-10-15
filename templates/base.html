@@ -1,0 +1,174 @@
+{% load i18n %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'fa'  %}rtl{% else %}ltr{% endif %}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'img/icon.jpg' %}">
+    <title>{% block title %}{% endblock title %}</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.rtl.min.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="bg-overlay"></div>
+    <div class="particles-container" id="particlesContainer"></div>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm" dir="rtl">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="{% url 'MakePoem:home' %}">
+        <i class="bi bi-feather"></i> {% trans "Poemino" %}
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+                data-bs-target="#mainNav" aria-controls="mainNav" 
+                aria-expanded="false" aria-label="{% trans 'Toggle navigation' %}">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+            <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" 
+                href="{% url 'MakePoem:home' %}">
+                <i class="bi bi-house-door-fill ms-1"></i> {% trans "Home" %}
+            </a>
+            </li>
+
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link {% if request.resolver_match.url_name == 'add_poem' %}active{% endif %}" 
+                        href="{% url 'MakePoem:add_poem' %}">
+                        <i class="bi bi-plus-circle-fill ms-1"></i> {% trans "Add Poem" %}
+                    </a>
+                </li>
+            {% endif %}
+            <li class="nav-item">
+            <a class="nav-link {% if request.resolver_match.url_name == 'recent_poems' %}active{% endif %}" 
+                href="{% url 'MakePoem:recent_poems' %}">
+                <i class="bi bi-clock-history ms-1"></i> {% trans "Recent Poems" %}
+            </a>
+            </li>
+
+            {% if user.is_authenticated and user.is_page_permitted %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'dashboard:index' %}">
+                    <i class="bi bi-speedometer2 ms-1"></i> {% trans "Dashboard" %}
+                </a>
+            </li>
+            {% endif %}
+
+            {% if user.is_authenticated and user.can_request_dashboard and not user.dashboard_request_used %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'dashboard_request' %}">
+                    <i class="bi bi-person-plus ms-1"></i> {% trans "Request Dashboard" %}
+                </a>
+            </li>
+            {% endif %}
+
+            {% if user.is_authenticated %}
+            <li class="nav-item dropdown">
+            <a class="nav-link" href="{% url 'profile' %}" role="button" 
+                data-bs-toggle="dropdown" aria-expanded="false">
+                {% if user.avatar %}
+                <img src="{{ user.avatar.url }}" width="25" height="25" 
+                    class="rounded-circle ms-1" style="object-fit: cover;" alt="{{ user }}">
+                {% else %}
+                <i class="bi bi-person-circle ms-1"></i>
+                {% endif %}
+                {% trans "Profile" %}
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="{% url 'profile' %}">{% trans "Profile" %}</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item text-danger" href="{% url 'logout' %}">{% trans "Logout" %}</a></li>
+            </ul>
+            </li>
+            {% else %}
+            <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">
+                <i class="bi bi-box-arrow-in-left ms-1"></i> {% trans "Login" %}
+            </a>
+            </li>
+    
+            <li class="nav-item">
+            <a class="nav-link" href="{% url 'signup' %}">
+                <i class="bi bi-person-fill-check"></i> {% trans "Sign Up" %}
+            </a>
+            </li>
+            {% endif %}
+        </ul>
+
+        <!-- Compact search/filter in navigation after Profile -->
+        {% include 'partials/nav_search_filter.html' %}
+
+        </div>
+    </div>
+    </nav>
+    <header class="hero-section">
+        <div class="hero-badge">{% trans "✦ Collection of Pure Persian Poems ✦" %}</div>
+        <h1 class="hero-title">{% trans "Poemino" %}</h1>
+        <p class="hero-subtitle">{% trans "Each page, the beginning of a journey into the world of poetry and emotion" %}</p>
+        <div class="hero-divider"></div>
+    </header>
+
+    {% block content %}{% endblock content %}
+
+    <footer class="footer-section">
+        <p style="color: var(--gold-light);">{% trans "✧ Author of these heart-warming poems: Master Rasouli Zadeh ✧" %}</p>
+        <div class="footer-links">
+            <a href="tel:+989937857454">📞 09937857454</a>
+            <a href="https://web.bale.ai/@Rasoli4030">💬 {% trans "Bale" %}</a>
+            <a href="#">📱 {% trans "Internal Networks" %}</a>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // particles & animations (unchanged)
+        (function() {
+            const container = document.getElementById('particlesContainer');
+            for (let i = 0; i < 30; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                const size = Math.random() * 5 + 2;
+                p.style.width = size + 'px';
+                p.style.height = size + 'px';
+                p.style.left = Math.random() * 100 + '%';
+                p.style.backgroundColor = `rgba(212,167,69,${Math.random()*0.5+0.2})`;
+                p.style.animationDuration = (Math.random() * 15 + 8) + 's';
+                p.style.animationDelay = Math.random() * 10 + 's';
+                container.appendChild(p);
+            }
+        })();
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.poem-card');
+            cards.forEach((card, index) => card.style.setProperty('--i', index));
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2, rootMargin: '0px 0px -20px 0px' });
+            cards.forEach(card => observer.observe(card));
+        });
+
+        document.querySelectorAll('audio').forEach(a => {
+            a.addEventListener('play', function() {
+                document.querySelectorAll('audio').forEach(other => {
+                    if (other !== this && !other.paused) other.pause();
+                });
+            });
+        });
+    </script>
+</body>
+</html>

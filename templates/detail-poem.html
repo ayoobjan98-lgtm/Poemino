@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% load jalali_tags %}
+
+{% block title %}{{ poem.name }}{% endblock %}
+
+{% block content %}
+<div class="container-fluid px-2 px-sm-3 px-md-4">
+    <div class="row justify-content-center">
+        <div class="col-12 col-xl-10 col-xxl-8">
+
+            <article class="poem-card revealed">
+
+                <!-- نوار تزئینی -->
+                <div class="card-accent"></div>
+
+                <!-- عنوان -->
+                <div class="mb-4">
+                    <span class="poem-number d-inline-block text-break">
+                        {{ poem.name }}
+                    </span>
+                </div>
+
+                <!-- متن کامل شعر -->
+                <div class="poem-text-wrapper">
+                    <div class="poem-text text-break">
+                        {{ poem.text }}
+                    </div>
+                </div>
+                
+                <div class="mb-3 ms-4">
+                    <strong>{% trans "Poem Type" %} :</strong>
+                    {% if poem.poem_type == "ghazal" %}
+                        {% trans "Ghazal" %}
+                    {% elif poem.poem_type == "masnavi" %}
+                        {% trans "Masnavi" %}
+                    {% elif poem.poem_type == "robaee" %}
+                        {% trans "Robaee" %}
+                        
+                    {% elif poem.poem_type == "ghasideh" %}
+                        {% trans "Ghasideh" %}
+                        
+                    {% elif poem.poem_type == "nimaee" %}
+                        {% trans "Nimaee" %}
+                        
+                    {% elif poem.poem_type == "sepid" %}
+                        {% trans "Sepid" %}    
+                    {% endif %}  
+                </div>
+
+                <!-- اطلاعات نویسنده و تاریخ -->
+                <div class="audio-label mt-4">
+                    <div class="d-flex flex-wrap align-items-center gap-3">
+
+                        <!-- Author -->
+                        <div class="d-flex align-items-center gap-2">
+                            {% if poem.author.avatar %}
+                                <img
+                                    src="{{ poem.author.avatar.url }}"
+                                    alt="{% trans 'Author Avatar' %}"
+                                    class="rounded-circle flex-shrink-0"
+                                    width="42"
+                                    height="42"
+                                    style="object-fit:cover;"
+                                >
+                            {% else %}
+                                <div
+                                    class="d-flex align-items-center justify-content-center rounded-circle flex-shrink-0"
+                                    style="width:42px;height:42px;background:rgba(255,255,255,.06);"
+                                >
+                                    <i class="bi bi-person-circle text-info fs-5"></i>
+                                </div>
+                            {% endif %}
+
+                            <div class="text-break">
+                                <div class="small text-white-50">
+                                    {% trans "Author" %}
+                                </div>
+                                <div class="text-white fw-semibold">
+                                    {% if poem.author.last_name %}
+                                        {% trans "Master" %}
+                                        {{ poem.author.last_name }}
+                                    {% else %}
+                                        {% trans "Master" %}
+                                        {{ poem.author }}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- جداکننده -->
+                        <span class="d-none d-sm-inline text-white-50">|</span>
+
+                        <!-- Created -->
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="bi bi-calendar3 text-info"></i>
+                            <div>
+                                <div class="small text-white-50">
+                                    {% trans "Created" %}
+                                </div>
+                                <div class="text-white small">
+                                    {{ poem.created_at|to_jalali:"%Y/%m/%d %H:%M" }}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Audio Section -->
+                <div class="audio-section mt-4 p-3 p-sm-4">
+                    <div class="audio-label d-flex flex-wrap align-items-center gap-2 mb-3">
+                        <span class="d-flex align-items-center gap-2">
+                            <i class="bi bi-person-circle"></i>
+                            {% if poem.author.last_name %}
+                                🎵 استاد {{ poem.author.last_name }}
+                            {% else %}
+                                🎵 استاد {{ poem.author }}
+                            {% endif %}
+                        </span>
+
+                        <span class="d-none d-sm-inline">|</span>
+
+                        <span class="d-flex align-items-center gap-2">
+                            <i class="bi bi-calendar3"></i>
+                            {{ poem.created_at|to_jalali:"%Y/%m/%d %H:%M" }}
+                        </span>
+                    </div>
+
+                    <p class="mb-3">{% trans "Audio Pom" %}</p>
+
+                    {% if poem.voies %}
+                        <div class="audio-player-wrapper w-100">
+                            <audio
+                                src="{{ poem.voies.url }}"
+                                controls
+                                class="w-100"
+                            ></audio>
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- دکمه‌های عملیاتی -->
+                {% if user == poem.author %}
+                    <div class="d-flex flex-wrap gap-2 mt-4">
+                        <a
+                            href="{% url 'MakePoem:update_poem' poem.pk %}"
+                            class="btn btn-outline-warning btn-sm"
+                        >
+                            <i class="bi bi-pencil-square me-1"></i>
+                            {% trans "Update" %}
+                        </a>
+
+                        <a
+                            href="{% url 'MakePoem:delete_poem' poem.pk %}"
+                            class="btn btn-outline-danger btn-sm"
+                        >
+                            <i class="bi bi-trash me-1"></i>
+                            {% trans "Delete" %}
+                        </a>
+                    </div>
+                {% endif %}
+
+            </article>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

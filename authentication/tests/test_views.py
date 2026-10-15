@@ -1,0 +1,55 @@
+from django.test import TestCase, Client, override_settings
+from django.urls import reverse
+from django.contrib.auth import get_user_model
+from unittest.mock import patch
+from django.core.files.uploadedfile import SimpleUploadedFile
+import numpy as np
+
+from authentication.models import FaceReference
+
+User = get_user_model()
+
+
+class VideoVerificationViewTest(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.user = User.objects.create_user(
+            username='approved', email='approved@example.com', password='password'
+        )
+        self.user.is_page_permitted = True
+        self.user.save()
+        self.client.login(username='approved', password='password')
+
+    @override_settings(FACE_MATCH_THRESHOLD=0.5)
+    @patch('cv2.imread')  # ← mock cv2.imread globally inside the view
+    @patch('authentication.views.extract_frames')
+    @patch('authentication.views.extract_face_feature')
+    @patch('authentication.views.detect_faces')
+    @patch('authentication.views.compare_features', return_value=0.99)  # force strong match
+    @patch('authentication.views.detect_liveness')
+    @patch('authentication.views.create_otp_for_user')
+    @patch('authentication.views.send_otp_email')
+    def test_face_verification_success_sends_otp(
+        self, mock_send, mock_create_otp, mock_liveness, mock_compare,
+        mock_extract_face, mock_detect, mock_extract_frames, mock_imread
+    ):
+        FaceReference.objects.create(
+            user=self.user, image='ref.jpg', embedding='[0.1,0.2,0.3]'
+        )
+        mock_extract_frames.return_value = (['frame1.jpg', 'frame2.jpg'], '/tmp/frames')
+        mock_imread.return_value = np.zeros((100, 100, 3), dtype=np.uint8)
+        mock_detect.return_value = [{'bbox': (10, 10, 50, 50), 'score': 0.9}]
+        mock_extract_face.return_value = [0.1, 0.2, 0.3]
+        mock_liveness.return_value = (True, 2.5)
+        mock_create_otp.return_value = '123456'
+
+        video = SimpleUploadedFile("video.webm", b"fakevideo", content_type="video/webm")
+        response = self.client.post(reverse('authentication:video_verify'), {'video': video})
+
+        self.assertRedirects(response, reverse('authentication:otp'))
+        self.assertTrue(mock_send.called)
+
+    def test_missing_face_reference_shows_error(self):
+        response = self.client.get(reverse('authentication:video_verify'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'authentication/error.html')

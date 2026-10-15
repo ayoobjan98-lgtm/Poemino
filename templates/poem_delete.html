@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Delete Poem" %}{% endblock %}
+
+{% block content %}
+<div class="poem-card revealed" style="max-width: 500px; margin: 2rem auto; text-align: center;">
+    <div class="card-accent"></div>
+    <h2 class="poem-detail-title">{% trans "Delete Poem" %}</h2>
+    <p class="text-light">{% trans "Are you sure you want to delete" %} "{{ poem.name }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">{% trans "Yes, Delete" %}</button>
+        <a href="{% url 'MakePoem:detail_poem' poem.pk %}" class="btn btn-outline-light ms-2">{% trans "Cancel" %}</a>
+    </form>
+</div>
+{% endblock %}

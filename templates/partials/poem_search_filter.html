@@ -1,0 +1,105 @@
+{% load i18n %}
+
+<form method="get" id="poem-filter-form" class="mb-4">
+    <div class="row g-2 align-items-end">
+        <div class="col-12 col-md-4">
+            <label class="form-label small text-muted">{% trans "Search" %}</label>
+            <input type="text" name="q" value="{{ filter_params.q|default:'' }}"
+                   placeholder="{% trans 'Search poems, titles, or authors...' %}"
+                   class="form-control">
+        </div>
+        <div class="col-6 col-md-2">
+            <label class="form-label small text-muted">{% trans "Author" %}</label>
+            <input type="text" name="author" value="{{ filter_params.author|default:'' }}"
+                   placeholder="{% trans 'Author' %}" class="form-control">
+        </div>
+        <div class="col-6 col-md-2">
+            <label class="form-label small text-muted">{% trans "Title" %}</label>
+            <input type="text" name="title" value="{{ filter_params.title|default:'' }}"
+                   placeholder="{% trans 'Title' %}" class="form-control">
+        </div>
+        <div class="col-6 col-md-2">
+            <label class="form-label small text-muted">{% trans "Poem Type" %}</label>
+            <select name="poem_type" class="form-select">
+                <option value="">{% trans "All" %}</option>
+                {% for value, label in poem_type_choices %}
+                    <option value="{{ value }}" {% if filter_params.poem_type == value %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-6 col-md-2">
+            <label class="form-label small text-muted">{% trans "Created From" %}</label>
+            <input type="date" name="created_from" value="{{ filter_params.created_from|default:'' }}" class="form-control">
+        </div>
+        <div class="col-6 col-md-2">
+            <label class="form-label small text-muted">{% trans "Created To" %}</label>
+            <input type="date" name="created_to" value="{{ filter_params.created_to|default:'' }}" class="form-control">
+        </div>
+        <div class="col-6 col-md-2">
+            <label class="form-label small text-muted">{% trans "Modified From" %}</label>
+            <input type="date" name="edited_from" value="{{ filter_params.edited_from|default:'' }}" class="form-control">
+        </div>
+        <div class="col-6 col-md-2">
+            <label class="form-label small text-muted">{% trans "Modified To" %}</label>
+            <input type="date" name="edited_to" value="{{ filter_params.edited_to|default:'' }}" class="form-control">
+        </div>
+        <div class="col-12 col-md-auto">
+            <button type="submit" class="btn btn-primary w-100">{% trans "Apply" %}</button>
+        </div>
+    </div>
+
+    {% if filter_chips %}
+        <div class="mt-3 d-flex flex-wrap gap-2" id="active-filters">
+            {% for key, label in filter_chips %}
+                <span class="filter-chip" data-key="{{ key }}">
+                    {{ label }}
+                    <a href="#" class="chip-remove" aria-label="remove">×</a>
+                </span>
+            {% endfor %}
+            <a href="?" class="btn btn-sm btn-outline-secondary">{% trans "Clear All" %}</a>
+        </div>
+    {% endif %}
+</form>
+
+<style>
+    .filter-chip {
+        background-color: #e0f2fe;
+        border: 1px solid #0284c7;
+        border-radius: 16px;
+        padding: 4px 10px;
+        font-size: 0.85rem;
+        color: #075985;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+    .filter-chip .chip-remove {
+        color: #0284c7;
+        font-weight: bold;
+        text-decoration: none;
+        cursor: pointer;
+    }
+</style>
+
+<script>
+    (function () {
+        document.querySelectorAll('.filter-chip').forEach(function (chip) {
+            const removeBtn = chip.querySelector('.chip-remove');
+            removeBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                const key = chip.getAttribute('data-key');
+                const url = new URL(window.location.href);
+                url.searchParams.delete(key);
+                if (key === 'created_range') {
+                    url.searchParams.delete('created_from');
+                    url.searchParams.delete('created_to');
+                }
+                if (key === 'edited_range') {
+                    url.searchParams.delete('edited_from');
+                    url.searchParams.delete('edited_to');
+                }
+                window.location.href = url.toString();
+            });
+        });
+    })();
+</script>

@@ -1,0 +1,43 @@
+{% extends 'dashboard/base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Replace Audio" %}{% endblock title %}
+
+{% block content %}
+<div class="card shadow">
+    <div class="card-header">
+        <h5 class="mb-0">{% trans "Replace Audio for" %} {{ object.name }}</h5>
+    </div>
+    <div class="card-body">
+        {% if object.voies %}
+        <div class="mb-3">
+            <strong>{% trans "Current Audio" %}:</strong>
+            <audio controls class="w-100 mt-2">
+                <source src="{{ object.voies.url }}" type="audio/mpeg">
+            </audio>
+        </div>
+        {% endif %}
+        <form method="post" enctype="multipart/form-data" novalidate>
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="{{ form.voies.id_for_label }}" class="form-label">{{ form.voies.label }}</label>
+                {{ form.voies }}
+                {% if form.voies.help_text %}
+                    <div class="form-text">{{ form.voies.help_text }}</div>
+                {% endif %}
+                {% if form.voies.errors %}
+                    <div class="text-danger small">{{ form.voies.errors }}</div>
+                {% endif %}
+            </div>
+            <div class="d-flex justify-content-between">
+                <a href="{% url 'dashboard:poem_detail' pk=object.pk %}" class="btn btn-secondary">
+                    {% trans "Cancel" %}
+                </a>
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-upload"></i> {% trans "Replace Audio" %}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}

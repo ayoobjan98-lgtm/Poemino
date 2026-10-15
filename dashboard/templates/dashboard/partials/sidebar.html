@@ -1,0 +1,37 @@
+{% load i18n %}
+<nav class="d-flex flex-column p-3" id="sidebar">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h4 class="mb-0">
+            <i class="bi bi-speedometer2 me-2"></i>{% trans "Dashboard" %}
+        </h4>
+        <button class="btn btn-sm d-md-none" id="sidebar-close-btn" style="color: var(--color-sidebar-text);">
+            <i class="bi bi-x-lg"></i>
+        </button>
+    </div>
+    <hr>
+    <ul class="nav nav-pills flex-column">
+        <li class="nav-item">
+            <a class="nav-link {% if request.resolver_match.url_name == 'index' %}active{% endif %}"
+               href="{% url 'dashboard:index' %}">
+                <i class="bi bi-house-door me-2"></i>{% trans "Overview" %}
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link {% if request.resolver_match.url_name == 'poem_list' %}active{% endif %}"
+               href="{% url 'dashboard:poem_list' %}">
+                <i class="bi bi-journal-text me-2"></i>{% trans "Poems" %}
+            </a>
+        </li>
+    </ul>
+    <hr class="mt-auto">
+    <div class="mt-auto">
+        <button id="sidebar-theme-toggle" class="btn btn-sm w-100 return-site-btn mb-2"
+                title="{% trans 'Toggle theme' %}">
+            <i id="sidebar-theme-icon" class="bi bi-sun-fill me-1"></i> {% trans "Toggle Theme" %}
+        </button>
+        <a class="btn btn-sm w-100 return-site-btn" href="{% url 'MakePoem:home' %}">
+            <i class="bi bi-box-arrow-left me-1"></i>{% trans "Back to Site" %}
+        </a>
+    </div>
+</nav>

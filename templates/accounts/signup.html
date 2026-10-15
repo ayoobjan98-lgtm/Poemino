@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Sign Up" %}{% endblock title %}
+
+{% block content %}
+    <h2>{% trans "Create Account" %}</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn-submit">{% trans "Sign Up" %}</button>
+        <p class="mt-8">{% trans "Already have an account?" %} <a class="poem-link" href="{% url 'login' %}">{% trans "Log in" %}</a></p>
+    </form>
+{% endblock %}

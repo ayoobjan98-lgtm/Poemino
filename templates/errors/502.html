@@ -1,0 +1,15 @@
+{% extends "errors/error_base.html" %}
+
+{% block title %}502 | پاسخ نامعتبر از سرویس{% endblock title %}
+
+{% block icon %}bi-cloud-slash{% endblock icon %}
+
+{% block error_code %}502{% endblock error_code %}
+
+{% block error_title %}پاسخ نامعتبر از سرویس{% endblock error_title %}
+
+{% block error_message %}
+سرور هنگام ارتباط با یک سرویس دیگر پاسخ معتبری دریافت نکرد. لطفاً بعداً دوباره تلاش کنید.
+{% endblock error_message %}
+
+{% block status_code %}502{% endblock status_code %}

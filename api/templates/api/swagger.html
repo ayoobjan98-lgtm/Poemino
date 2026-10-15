@@ -1,0 +1,290 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Poemino API</title>
+
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/swagger-ui-dist@5/swagger-ui.css"
+    >
+</head>
+
+<body>
+
+<div id="swagger-ui"></div>
+
+<script src="https://unpkg.com/swagger-ui-dist@5/swagger-ui-bundle.js"></script>
+<script src="https://unpkg.com/swagger-ui-dist@5/swagger-ui-standalone-preset.js"></script>
+
+<script>
+
+function getCookie(name) {
+
+    const cookies = document.cookie.split(";");
+
+    for (const cookie of cookies) {
+
+        const item = cookie.trim();
+
+        if (item.startsWith(name + "=")) {
+            return decodeURIComponent(
+                item.substring(name.length + 1)
+            );
+        }
+    }
+
+    return null;
+}
+
+
+const csrfToken = getCookie("csrftoken");
+
+
+const ui = SwaggerUIBundle({
+
+    url: "{% url 'schema' %}",
+
+    dom_id: "#swagger-ui",
+
+    deepLinking: true,
+
+    presets: [
+        SwaggerUIBundle.presets.apis,
+        SwaggerUIStandalonePreset
+    ],
+
+    plugins: [
+        SwaggerUIBundle.plugins.DownloadUrl
+    ],
+
+    layout: "StandaloneLayout",
+
+    persistAuthorization: true,
+
+
+    /* ============================================
+       ADD CSRF TO POST REQUESTS
+    ============================================ */
+
+    requestInterceptor: function(request) {
+
+        if (
+            request.method &&
+            request.method.toUpperCase() === "POST"
+        ) {
+
+            if (csrfToken) {
+
+                request.headers[
+                    "X-CSRFToken"
+                ] = csrfToken;
+
+            }
+        }
+
+        return request;
+    }
+
+});
+
+
+/* ================================================
+   MAKE UI AVAILABLE GLOBALLY
+================================================ */
+
+window.swaggerUI = ui;
+
+
+/* ================================================
+   GET JWT
+================================================ */
+
+async function getAPIToken() {
+
+    try {
+
+        const response = await fetch(
+            "{% url 'api-token' %}",
+            {
+                method: "POST",
+
+                credentials: "same-origin",
+
+                headers: {
+                    "X-CSRFToken": csrfToken,
+                    "X-Requested-With": "XMLHttpRequest"
+                }
+            }
+        );
+
+
+        if (response.status === 403) {
+
+            alert(
+                "CSRF validation failed. Refresh the page and try again."
+            );
+
+            return;
+        }
+
+
+        if (response.status === 401) {
+
+            alert(
+                "Please login to the website first."
+            );
+
+            return;
+        }
+
+
+        if (!response.ok) {
+
+            const errorText =
+                await response.text();
+
+            console.error(errorText);
+
+            alert(
+                "Could not generate API token."
+            );
+
+            return;
+        }
+
+
+        const data =
+            await response.json();
+
+
+        console.log(
+            "Generated API token:",
+            data
+        );
+
+
+        /* ========================================
+           SAVE TOKEN
+        ======================================== */
+
+        sessionStorage.setItem(
+            "api_access_token",
+            data.access
+        );
+
+        sessionStorage.setItem(
+            "api_token_type",
+            data.token_type
+        );
+
+        sessionStorage.setItem(
+            "api_role",
+            data.role
+        );
+
+        sessionStorage.setItem(
+            "api_expires_at",
+            String(data.expires_at)
+        );
+
+
+        /* ========================================
+           AUTOMATIC SWAGGER AUTHORIZE
+        ======================================== */
+
+        ui.authActions.authorize({
+
+            bearerAuth: {
+                value: "Bearer " + data.access
+            }
+
+        });
+
+
+        alert(
+            "Token generated successfully!\n\n" +
+            "Type: " + data.token_type +
+            "\nRole: " + data.role
+        );
+
+    }
+    catch (error) {
+
+        console.error(error);
+
+        alert(
+            "An error occurred while generating the token."
+        );
+    }
+}
+
+
+/* ================================================
+   ADD GET TOKEN BUTTON
+================================================ */
+
+setTimeout(function() {
+
+    const topbar =
+        document.querySelector(
+            ".swagger-ui .topbar"
+        );
+
+    if (!topbar) {
+        return;
+    }
+
+
+    const button =
+        document.createElement("button");
+
+
+    button.innerText =
+        "Get API Token";
+
+
+    button.type =
+        "button";
+
+
+    button.style.marginLeft =
+        "10px";
+
+
+    button.style.padding =
+        "8px 14px";
+
+
+    button.style.border =
+        "none";
+
+
+    button.style.borderRadius =
+        "4px";
+
+
+    button.style.cursor =
+        "pointer";
+
+
+    button.onclick =
+        getAPIToken;
+
+
+    topbar.appendChild(
+        button
+    );
+
+
+}, 1500);
+
+
+/* END */
+
+</script>
+
+</body>
+</html>

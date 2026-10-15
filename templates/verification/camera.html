@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Camera Verification" %}{% endblock title %}
+
+{% block content %}
+<div class="main-wrapper">
+    <div class="poem-card" style="opacity:1; transform:none; max-width:700px; margin:0 auto;">
+        <div class="card-accent"></div>
+        <h3 class="hero-title" style="font-size:2rem; margin-bottom:1rem;">{% trans "Camera Verification" %}</h3>
+        <p style="color:#f5e7d3; margin-bottom:2rem;">{% trans "Please capture a photo of your face before requesting OTP." %}</p>
+
+        <form method="post" id="camera-form">
+            {% csrf_token %}
+            <input type="hidden" name="photo_data" id="photo-data">
+
+            <div style="text-align:center;">
+                <!-- Mirrored camera preview -->
+                <video id="camera-preview" autoplay playsinline style="width:100%; max-width:500px; border-radius:16px; transform: scaleX(-1); display:none;"></video>
+                <canvas id="photo-canvas" style="display:none;"></canvas>
+                <img id="photo-preview" style="display:none; max-width:500px; border-radius:16px; margin-bottom:1rem;">
+
+                <div>
+                    <button type="button" class="btn-submit" id="start-camera">{% trans "Start Camera" %}</button>
+                    <button type="button" class="btn-submit" id="capture-photo" disabled>{% trans "Capture Photo" %}</button>
+                    <button type="button" class="btn-submit" id="retake-photo" style="display:none;">{% trans "Retake" %}</button>
+                </div>
+                <div id="status" class="small" style="color:#dbbf8e; margin-top:0.5rem;"></div>
+
+                <button type="submit" id="submit-btn" class="btn-submit mt-3" disabled>{% trans "Submit Verification" %}</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+(function() {
+    let stream = null;
+    let photoBlob = null;
+
+    const startBtn = document.getElementById('start-camera');
+    const captureBtn = document.getElementById('capture-photo');
+    const retakeBtn = document.getElementById('retake-photo');
+    const videoPreview = document.getElementById('camera-preview');
+    const photoPreview = document.getElementById('photo-preview');
+    const photoCanvas = document.getElementById('photo-canvas');
+    const statusDiv = document.getElementById('status');
+    const submitBtn = document.getElementById('submit-btn');
+    const photoDataInput = document.getElementById('photo-data');
+
+    startBtn.addEventListener('click', async () => {
+        try {
+            stream = await navigator.mediaDevices.getUserMedia({ video: true });
+            videoPreview.srcObject = stream;
+            videoPreview.style.display = 'block';
+            startBtn.disabled = true;
+            captureBtn.disabled = false;
+        } catch(e) {
+            statusDiv.textContent = '{% trans "Camera access denied." %}';
+        }
+    });
+
+    captureBtn.addEventListener('click', () => {
+        const canvas = photoCanvas;
+        canvas.width = videoPreview.videoWidth;
+        canvas.height = videoPreview.videoHeight;
+        canvas.getContext('2d').drawImage(videoPreview, 0, 0);
+        canvas.toBlob(blob => {
+            photoBlob = blob;
+            photoPreview.src = URL.createObjectURL(blob);
+            photoPreview.style.display = 'block';
+            videoPreview.style.display = 'none';
+            captureBtn.style.display = 'none';
+            retakeBtn.style.display = 'inline-block';
+            statusDiv.textContent = '{% trans "Photo captured." %}';
+            const reader = new FileReader();
+            reader.onloadend = () => photoDataInput.value = reader.result;
+            reader.readAsDataURL(blob);
+            submitBtn.disabled = false;
+        }, 'image/png');
+    });
+
+    retakeBtn.addEventListener('click', () => {
+        photoBlob = null;
+        photoPreview.style.display = 'none';
+        videoPreview.style.display = 'block';
+        captureBtn.style.display = 'inline-block';
+        retakeBtn.style.display = 'none';
+        photoDataInput.value = '';
+        submitBtn.disabled = true;
+    });
+
+    window.addEventListener('beforeunload', () => {
+        if (stream) stream.getTracks().forEach(t => t.stop());
+    });
+})();
+</script>
+{% endblock %}

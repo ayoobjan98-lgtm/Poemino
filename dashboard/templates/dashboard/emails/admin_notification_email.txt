@@ -1,0 +1,11 @@
+{% load i18n %}{% trans "A new content manager registration is pending review." %}
+
+{% trans "Username:" %} {{ username }}
+{% trans "Full Name:" %} {{ full_name }}
+{% trans "Phone:" %} {{ phone }}
+{% trans "Email:" %} {{ email }}
+{% trans "Submitted:" %} {{ created_at }}
+{% trans "Status:" %} {{ status }}
+
+{% trans "Review Registration:" %} {{ review_link }}
+{% trans "This link is only accessible to administrators." %}

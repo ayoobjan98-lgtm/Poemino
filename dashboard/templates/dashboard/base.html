@@ -1,0 +1,51 @@
+{% load i18n %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'fa' %}rtl{% else %}ltr{% endif %}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% trans "Dashboard" %}{% endblock title %}</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.rtl.min.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}">
+    <link rel="icon" href="{% static 'dashboard/img/icon.png' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{% static 'dashboard/css/style.css' %}">
+
+    <script>
+        (function() {
+            var theme = localStorage.getItem('dashboard-theme');
+            if (!theme) theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+    {% block extra_head %}{% endblock extra_head %}
+</head>
+<body>
+    <div class="d-flex" id="wrapper">
+        {% include 'dashboard/partials/sidebar.html' %}
+        <div id="page-content-wrapper" class="flex-grow-1">
+            {% include 'dashboard/partials/navbar.html' %}
+            <main class="container-fluid p-4">
+                {% include 'dashboard/partials/messages.html' %}
+                {% block content %}{% endblock content %}
+            </main>
+        </div>
+    </div>
+
+    <!-- Backdrop for mobile sidebar -->
+    <div id="sidebar-backdrop" class="d-md-none" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:998;"></div>
+
+    <!-- Confirmation modal -->
+    {% include 'dashboard/partials/confirm_modal.html' %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'dashboard/js/dashboard.js' %}"></script>
+    {% block extra_js %}{% endblock extra_js %}
+</body>
+</html>

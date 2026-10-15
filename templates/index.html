@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% load jalali_tags %}
+
+{% block title %}{% trans "Home" %}{% endblock title %}
+
+{% block content %}
+<style>
+    .poem-card {
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+.poem-title,
+.poem-text,
+.poem-text-wrapper,
+.poem-card details,
+.poem-card summary {
+    min-width: 0;
+    max-width: 100%;
+}
+
+.poem-title,
+.poem-text {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    white-space: normal;
+}
+
+</style>
+<div class="main-wrapper">
+    <div class="poetry-grid" id="poetryGrid"></div>
+
+    <div id="poemsLoading" class="text-center py-5">
+        <span>در حال دریافت شعرها...</span>
+    </div>
+
+    <div id="poemsEmpty" class="alert alert-info text-center d-none">
+        {% trans "No poems found." %}
+    </div>
+
+    <div id="poemsError" class="alert alert-danger text-center d-none"></div>
+
+    {% include 'partials/pagination.html' %}
+</div>
+
+<script>
+    window.POEM_TRANSLATIONS = {
+        poemText: "{% trans 'Poem Text' %}",
+        detailPoem: "{% trans 'Detail Poem' %}",
+        author: "{% trans 'Author' %}",
+        master: "{% trans 'Master' %}",
+        authorAvatar: "{% trans 'Author Avatar' %}",
+        created: "{% trans 'Created' %}",
+        lastEdited: "{% trans 'Last Edited' %}",
+        noPoems: "{% trans 'No poems found.' %}"
+    };
+
+    const POEMS_API_URL = "/0.1/poems";
+</script>
+
+<script src="{% static 'js/home.js' %}"></script>
+
+{% endblock content %}

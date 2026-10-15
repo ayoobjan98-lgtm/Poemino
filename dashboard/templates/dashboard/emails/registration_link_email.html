@@ -1,0 +1,13 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"></head>
+<body>
+    <p>{% blocktrans %}Dear {{ full_name }},{% endblocktrans %}</p>
+    <p>{% trans "Your request to become a content manager has been approved." %}</p>
+    <p>{% trans "Please use the following link to complete your registration:" %}</p>
+    <p><a href="{{ link }}">{{ link }}</a></p>
+    <p>{% trans "This link is valid for 24 hours and can only be used once." %}</p>
+    <p>{% trans "Thank you!" %}</p>
+</body>
+</html>

@@ -1,0 +1,222 @@
+{% extends 'dashboard/base.html' %}
+{% load i18n %}
+
+{% block title %}{{ page_title }}{% endblock title %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">
+                        <i class="bi bi-mic-fill me-1"></i>
+                        {% trans "Voice to Text" %}
+                    </h5>
+
+                    <button type="button" class="btn btn-sm btn-outline-secondary" id="copy-btn">
+                        <i class="bi bi-clipboard"></i>
+                        {% trans "Copy Text" %}
+                    </button>
+                </div>
+
+                <div class="card-body">
+                    <textarea
+                        id="voice-text"
+                        class="form-control"
+                        rows="12"
+                        placeholder="متن گفتاری شما اینجا نوشته می‌شود..."
+                        style="font-size: 1.1rem; line-height: 2.2; direction: rtl;"
+                    ></textarea>
+
+                    <div class="mt-3 d-flex gap-2 flex-wrap">
+                        <button type="button" class="btn btn-primary" id="start-btn">
+                            <i class="bi bi-mic-fill"></i>
+                            {% trans "Start Recording" %}
+                        </button>
+                        <button type="button" class="btn btn-danger" id="stop-btn" disabled>
+                            <i class="bi bi-stop-fill"></i>
+                            {% trans "Stop" %}
+                        </button>
+                        <button type="button" class="btn btn-outline-secondary" id="clear-btn">
+                            <i class="bi bi-x-circle"></i>
+                            {% trans "Clear" %}
+                        </button>
+                    </div>
+
+                    <div id="status" class="small mt-2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+(function () {
+    'use strict';
+
+    if (window.__voiceToTextInit) return;
+    window.__voiceToTextInit = true;
+
+    function init() {
+        var startBtn = document.getElementById('start-btn');
+        var stopBtn  = document.getElementById('stop-btn');
+        var clearBtn = document.getElementById('clear-btn');
+        var copyBtn  = document.getElementById('copy-btn');
+        var textarea = document.getElementById('voice-text');
+        var status   = document.getElementById('status');
+
+        if (!startBtn || !stopBtn || !clearBtn || !copyBtn || !textarea || !status) return;
+
+        var SpeechRecognition =
+            window.SpeechRecognition || window.webkitSpeechRecognition;
+
+        if (!SpeechRecognition) {
+            startBtn.disabled = true;
+            status.textContent =
+                'مرورگر شما از تشخیص گفتار پشتیبانی نمی‌کند. لطفاً از کروم یا اج استفاده کنید.';
+            status.style.color = '#c44';
+            return;
+        }
+
+        var recognition   = null;
+        var listening     = false;
+        var committedText = '';  // text already recognized and confirmed before this session
+        var finalBuffer   = '';  // final results accumulated during the current session
+
+        function setStatus(msg, color) {
+            status.textContent = msg || '';
+            status.style.color = color || '#8b7355';
+        }
+
+        function joinText(base, addition) {
+            base = (base || '').replace(/\s+$/, '');
+            addition = (addition || '').replace(/^\s+/, '');
+            if (!base) return addition;
+            if (!addition) return base;
+            return base + ' ' + addition;
+        }
+
+        startBtn.addEventListener('click', function () {
+            if (listening) return;
+
+            // Preserve whatever is already in the textarea.
+            committedText = textarea.value || '';
+            finalBuffer   = '';
+
+            recognition = new SpeechRecognition();
+            recognition.lang            = 'fa-IR';
+            recognition.continuous      = true;
+            recognition.interimResults  = true;
+            recognition.maxAlternatives = 1;
+
+            recognition.onstart = function () {
+                listening = true;
+                startBtn.disabled = true;
+                stopBtn.disabled  = false;
+                setStatus('در حال گوش دادن...', '#198754');
+            };
+
+            recognition.onresult = function (event) {
+                var interim = '';
+                for (var i = event.resultIndex; i < event.results.length; i++) {
+                    var piece = event.results[i][0].transcript;
+                    if (event.results[i].isFinal) {
+                        finalBuffer = joinText(finalBuffer, piece);
+                    } else {
+                        interim = joinText(interim, piece);
+                    }
+                }
+
+                // Compose: committed text (from before) + finals + interim
+                var combined = joinText(joinText(committedText, finalBuffer), interim);
+                textarea.value = combined;
+
+                // Keep the newest text visible.
+                textarea.scrollTop = textarea.scrollHeight;
+            };
+
+            recognition.onerror = function (event) {
+                if (event.error === 'no-speech') return;
+                setStatus('خطا در تشخیص گفتار: ' + event.error, '#c44');
+            };
+
+            recognition.onend = function () {
+                listening = false;
+                startBtn.disabled = false;
+                stopBtn.disabled  = true;
+
+                // Persist the current session's finals so the next start
+                // continues from here.
+                committedText = joinText(committedText, finalBuffer);
+
+                if (committedText.trim()) {
+                    setStatus('ضبط متوقف شد.', '#8b7355');
+                } else {
+                    setStatus('متنی تشخیص داده نشد.', '#c44');
+                }
+            };
+
+            try {
+                recognition.start();
+            } catch (e) {
+                setStatus('شروع ضبط ممکن نشد.', '#c44');
+                if (window.console && console.error) {
+                    console.error('[voice-to-text] start failed:', e);
+                }
+            }
+        });
+
+        stopBtn.addEventListener('click', function () {
+            if (recognition && listening) recognition.stop();
+        });
+
+        clearBtn.addEventListener('click', function () {
+            if (textarea.value && !confirm('متن پاک شود؟')) return;
+            textarea.value   = '';
+            committedText    = '';
+            finalBuffer      = '';
+            setStatus('');
+        });
+
+        copyBtn.addEventListener('click', function () {
+            var text = textarea.value;
+            if (!text) {
+                setStatus('متنی برای کپی وجود ندارد.', '#c44');
+                return;
+            }
+
+            function onSuccess() {
+                setStatus('متن کپی شد.', '#198754');
+                var originalHTML = copyBtn.innerHTML;
+                copyBtn.innerHTML = '<i class="bi bi-check-lg"></i> کپی شد';
+                setTimeout(function () { copyBtn.innerHTML = originalHTML; }, 1500);
+            }
+
+            function fallbackCopy() {
+                textarea.select();
+                textarea.setSelectionRange(0, text.length);
+                try {
+                    document.execCommand('copy');
+                    onSuccess();
+                } catch (e) {
+                    setStatus('کپی ممکن نشد.', '#c44');
+                }
+            }
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(onSuccess).catch(fallbackCopy);
+            } else {
+                fallbackCopy();
+            }
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+})();
+</script>
+{% endblock content %}

@@ -1,0 +1,18 @@
+{% load i18n %}
+<div class="modal fade" id="dashboardConfirmModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="background-color: var(--bg-card); color: var(--color-text); border: 1px solid var(--border-color);">
+            <div class="modal-header" style="border-bottom: 1px solid var(--border-color);">
+                <h5 class="modal-title">{% trans "Confirm Action" %}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="filter: invert(1);"></button>
+            </div>
+            <div class="modal-body" id="dashboardConfirmMessage">
+                {% trans "Are you sure?" %}
+            </div>
+            <div class="modal-footer" style="border-top: 1px solid var(--border-color);">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="dashboardConfirmCancel">{% trans "Cancel" %}</button>
+                <button type="button" class="btn btn-danger" id="dashboardConfirmYes">{% trans "Yes" %}</button>
+            </div>
+        </div>
+    </div>
+</div>

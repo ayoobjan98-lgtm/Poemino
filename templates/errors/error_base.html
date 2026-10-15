@@ -1,0 +1,1408 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {% block title %}خطا{% endblock title %}
+    </title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            width: 100%;
+            min-height: 100%;
+        }
+
+        body {
+            background: #020407;
+            color: #ffffff;
+
+            font-family:
+                system-ui,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+
+            overflow: hidden;
+        }
+
+
+        /* =====================================================
+           ERROR WORLD
+        ===================================================== */
+
+        .error-world {
+
+            position: relative;
+
+            width: 100%;
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            overflow: hidden;
+
+            background:
+
+                radial-gradient(
+                    circle at var(--mouse-x, 50%)
+                    var(--mouse-y, 50%),
+                    rgba(255,255,255,.035),
+                    transparent 28%
+                ),
+
+                radial-gradient(
+                    circle at 20% 20%,
+                    rgba(255,255,255,.025),
+                    transparent 30%
+                ),
+
+                #020407;
+        }
+
+
+        /* =====================================================
+           BACKGROUND
+        ===================================================== */
+
+        .background-grid {
+
+            position: absolute;
+
+            inset: 0;
+
+            opacity: .15;
+
+            background-image:
+
+                linear-gradient(
+                    rgba(255,255,255,.035) 1px,
+                    transparent 1px
+                ),
+
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,.035) 1px,
+                    transparent 1px
+                );
+
+            background-size: 70px 70px;
+
+            transform:
+                translate(
+                    var(--grid-x, 0px),
+                    var(--grid-y, 0px)
+                );
+
+            transition:
+                transform .2s ease-out;
+        }
+
+
+        /* =====================================================
+           SKELETON CREATURE
+        ===================================================== */
+
+        .skeleton-stage {
+
+            position: absolute;
+
+            width: min(900px, 90vw);
+            height: min(600px, 70vh);
+
+            left: 50%;
+            top: 50%;
+
+            transform:
+                translate(-50%, -50%);
+
+            pointer-events: none;
+
+            z-index: 1;
+        }
+
+
+        .skeleton {
+
+            width: 100%;
+            height: 100%;
+
+            overflow: visible;
+
+            filter:
+                drop-shadow(
+                    0 0 8px
+                    rgba(255,255,255,.10)
+                );
+        }
+
+
+        /* =====================================================
+           SPINE
+        ===================================================== */
+
+        .spine {
+
+            fill: none;
+
+            stroke: #6f7780;
+
+            stroke-width: 7;
+
+            stroke-linecap: round;
+
+            opacity: .9;
+        }
+
+
+        .vertebra {
+
+            fill: #0b0e12;
+
+            stroke: #858d96;
+
+            stroke-width: 2;
+
+            transition:
+                transform .15s ease;
+        }
+
+
+        .vertebra-core {
+
+            fill: #626a72;
+        }
+
+
+        /* =====================================================
+           RIBS
+        ===================================================== */
+
+        .rib {
+
+            fill: none;
+
+            stroke: #555d65;
+
+            stroke-width: 3;
+
+            stroke-linecap: round;
+
+            opacity: .85;
+
+            transform-origin: center;
+        }
+
+
+        /* =====================================================
+           LEGS
+        ===================================================== */
+
+        .leg {
+
+            fill: none;
+
+            stroke: #737b84;
+
+            stroke-width: 3;
+
+            stroke-linecap: round;
+
+            stroke-linejoin: round;
+
+            opacity: .85;
+        }
+
+
+        .leg-joint {
+
+            fill: #090b0e;
+
+            stroke: #858d96;
+
+            stroke-width: 2;
+        }
+
+
+        /* =====================================================
+           SKULL
+        ===================================================== */
+
+        .skull {
+
+            fill: #07090c;
+
+            stroke: #929aa3;
+
+            stroke-width: 3;
+        }
+
+
+        .skull-detail {
+
+            fill: none;
+
+            stroke: #6f7780;
+
+            stroke-width: 2;
+
+            stroke-linecap: round;
+        }
+
+
+        .eye-socket {
+
+            fill: #000000;
+
+            stroke: #858d96;
+
+            stroke-width: 2;
+        }
+
+
+        /* =====================================================
+           ERROR CARD
+        ===================================================== */
+
+        .error-card {
+
+            position: relative;
+
+            z-index: 10;
+
+            width: min(650px, calc(100% - 30px));
+
+            padding: 55px 45px;
+
+            text-align: center;
+
+            background:
+                rgba(4, 7, 11, .78);
+
+            border:
+                1px solid
+                rgba(255,255,255,.10);
+
+            border-radius: 28px;
+
+            backdrop-filter:
+                blur(18px);
+
+            box-shadow:
+
+                0 35px 100px
+                rgba(0,0,0,.55),
+
+                inset 0 1px 0
+                rgba(255,255,255,.04);
+
+            animation:
+                card-in
+                .7s
+                cubic-bezier(.16,1,.3,1);
+        }
+
+
+        @keyframes card-in {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(30px)
+                    scale(.95);
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0)
+                    scale(1);
+            }
+        }
+
+
+        /* =====================================================
+           ERROR CODE
+        ===================================================== */
+
+        .error-code {
+
+            margin-bottom: 10px;
+
+            font-size:
+                clamp(5rem, 15vw, 9rem);
+
+            line-height: .85;
+
+            font-weight: 900;
+
+            letter-spacing: -.08em;
+
+            color: #c7ccd1;
+
+            text-shadow:
+                0 0 30px
+                rgba(255,255,255,.08);
+        }
+
+
+        .error-title {
+
+            margin: 0 0 15px;
+
+            font-size:
+                clamp(1.6rem, 4vw, 2.3rem);
+
+            color: #f4f5f6;
+
+            font-weight: 800;
+        }
+
+
+        .error-message {
+
+            max-width: 520px;
+
+            margin: auto;
+
+            color:
+                rgba(255,255,255,.55);
+
+            line-height: 2;
+        }
+
+
+        /* =====================================================
+           BUTTONS
+        ===================================================== */
+
+        .error-actions {
+
+            margin-top: 30px;
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 12px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .error-button {
+
+            min-width: 150px;
+
+            padding: 12px 20px;
+
+            border-radius: 12px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.12);
+
+            color: #ffffff;
+
+            background:
+                rgba(255,255,255,.05);
+
+            text-decoration: none;
+
+            cursor: pointer;
+
+            transition:
+                transform .25s ease,
+                background .25s ease,
+                border-color .25s ease;
+        }
+
+
+        .error-button:hover {
+
+            transform:
+                translateY(-3px);
+
+            background:
+                rgba(255,255,255,.10);
+
+            border-color:
+                rgba(255,255,255,.25);
+        }
+
+
+        .error-button.primary {
+
+            background:
+                rgba(255,255,255,.12);
+
+            border-color:
+                rgba(255,255,255,.20);
+        }
+
+
+        .error-status {
+
+            margin-top: 25px;
+
+            font-size: .8rem;
+
+            color:
+                rgba(255,255,255,.3);
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 768px) {
+
+            body {
+                overflow-y: auto;
+            }
+
+            .skeleton-stage {
+
+                width: 700px;
+
+                height: 450px;
+
+                opacity: .35;
+            }
+
+            .error-card {
+
+                padding:
+                    40px 22px;
+            }
+
+            .error-actions {
+
+                flex-direction: column;
+            }
+
+            .error-button {
+
+                width: 100%;
+            }
+        }
+
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+
+                animation-duration:
+                    .01ms !important;
+
+                animation-iteration-count:
+                    1 !important;
+
+                transition-duration:
+                    .01ms !important;
+            }
+        }
+
+    </style>
+
+    {% block extra_css %}{% endblock extra_css %}
+
+</head>
+
+
+<body>
+
+
+<div
+    class="error-world"
+    id="errorWorld"
+>
+
+
+    <div
+        class="background-grid"
+        id="backgroundGrid"
+    ></div>
+
+
+    <!-- =====================================================
+         SKELETON CENTIPEDE
+    ====================================================== -->
+
+    <div
+        class="skeleton-stage"
+        id="skeletonStage"
+    >
+
+        <svg
+            class="skeleton"
+            id="skeleton"
+            viewBox="0 0 900 600"
+            aria-hidden="true"
+        >
+
+            <!-- SPINE -->
+
+            <path
+                id="spine"
+                class="spine"
+                d="
+                    M180 340
+                    C300 300
+                    430 315
+                    550 340
+                    C650 360
+                    735 335
+                    790 285
+                "
+            />
+
+
+            <!-- =================================================
+                 VERTEBRAE
+            ================================================== -->
+
+            <g id="vertebrae">
+
+
+                <g class="vertebra-group">
+
+                    <ellipse
+                        class="vertebra"
+                        cx="210"
+                        cy="330"
+                        rx="18"
+                        ry="13"
+                    />
+
+                    <circle
+                        class="vertebra-core"
+                        cx="210"
+                        cy="330"
+                        r="5"
+                    />
+
+                </g>
+
+
+                <g class="vertebra-group">
+
+                    <ellipse
+                        class="vertebra"
+                        cx="250"
+                        cy="320"
+                        rx="18"
+                        ry="13"
+                    />
+
+                    <circle
+                        class="vertebra-core"
+                        cx="250"
+                        cy="320"
+                        r="5"
+                    />
+
+                </g>
+
+
+                <g class="vertebra-group">
+
+                    <ellipse
+                        class="vertebra"
+                        cx="290"
+                        cy="315"
+                        rx="18"
+                        ry="13"
+                    />
+
+                    <circle
+                        class="vertebra-core"
+                        cx="290"
+                        cy="315"
+                        r="5"
+                    />
+
+                </g>
+
+
+                <g class="vertebra-group">
+
+                    <ellipse
+                        class="vertebra"
+                        cx="330"
+                        cy="315"
+                        rx="18"
+                        ry="13"
+                    />
+
+                    <circle
+                        class="vertebra-core"
+                        cx="330"
+                        cy="315"
+                        r="5"
+                    />
+
+                </g>
+
+
+                <g class="vertebra-group">
+
+                    <ellipse
+                        class="vertebra"
+                        cx="370"
+                        cy="318"
+                        rx="18"
+                        ry="13"
+                    />
+
+                    <circle
+                        class="vertebra-core"
+                        cx="370"
+                        cy="318"
+                        r="5"
+                    />
+
+                </g>
+
+
+                <g class="vertebra-group">
+
+                    <ellipse
+                        class="vertebra"
+                        cx="410"
+                        cy="320"
+                        rx="18"
+                        ry="13"
+                    />
+
+                    <circle
+                        class="vertebra-core"
+                        cx="410"
+                        cy="320"
+                        r="5"
+                    />
+
+                </g>
+
+
+                <g class="vertebra-group">
+
+                    <ellipse
+                        class="vertebra"
+                        cx="450"
+                        cy="325"
+                        rx="18"
+                        ry="13"
+                    />
+
+                    <circle
+                        class="vertebra-core"
+                        cx="450"
+                        cy="325"
+                        r="5"
+                    />
+
+                </g>
+
+
+                <g class="vertebra-group">
+
+                    <ellipse
+                        class="vertebra"
+                        cx="490"
+                        cy="330"
+                        rx="18"
+                        ry="13"
+                    />
+
+                    <circle
+                        class="vertebra-core"
+                        cx="490"
+                        cy="330"
+                        r="5"
+                    />
+
+                </g>
+
+
+                <g class="vertebra-group">
+
+                    <ellipse
+                        class="vertebra"
+                        cx="530"
+                        cy="337"
+                        rx="18"
+                        ry="13"
+                    />
+
+                    <circle
+                        class="vertebra-core"
+                        cx="530"
+                        cy="337"
+                        r="5"
+                    />
+
+                </g>
+
+
+                <g class="vertebra-group">
+
+                    <ellipse
+                        class="vertebra"
+                        cx="570"
+                        cy="344"
+                        rx="18"
+                        ry="13"
+                    />
+
+                    <circle
+                        class="vertebra-core"
+                        cx="570"
+                        cy="344"
+                        r="5"
+                    />
+
+                </g>
+
+
+                <g class="vertebra-group">
+
+                    <ellipse
+                        class="vertebra"
+                        cx="610"
+                        cy="350"
+                        rx="18"
+                        ry="13"
+                    />
+
+                    <circle
+                        class="vertebra-core"
+                        cx="610"
+                        cy="350"
+                        r="5"
+                    />
+
+                </g>
+
+
+                <g class="vertebra-group">
+
+                    <ellipse
+                        class="vertebra"
+                        cx="650"
+                        cy="350"
+                        rx="18"
+                        ry="13"
+                    />
+
+                    <circle
+                        class="vertebra-core"
+                        cx="650"
+                        cy="350"
+                        r="5"
+                    />
+
+                </g>
+
+            </g>
+
+
+            <!-- =================================================
+                 RIBS
+            ================================================== -->
+
+            <g class="ribs">
+
+                <path
+                    class="rib"
+                    d="M275 322 Q275 370 310 375"
+                />
+
+                <path
+                    class="rib"
+                    d="M320 315 Q320 370 355 378"
+                />
+
+                <path
+                    class="rib"
+                    d="M365 318 Q365 375 400 382"
+                />
+
+                <path
+                    class="rib"
+                    d="M410 320 Q410 378 445 385"
+                />
+
+                <path
+                    class="rib"
+                    d="M455 326 Q455 382 490 390"
+                />
+
+                <path
+                    class="rib"
+                    d="M500 332 Q500 390 535 395"
+                />
+
+                <path
+                    class="rib"
+                    d="M545 340 Q545 395 580 398"
+                />
+
+            </g>
+
+
+            <!-- =================================================
+                 LEGS
+            ================================================== -->
+
+            <g id="legs">
+
+                <path
+                    class="leg"
+                    d="M250 330 L210 380 L170 405"
+                />
+
+                <circle
+                    class="leg-joint"
+                    cx="210"
+                    cy="380"
+                    r="6"
+                />
+
+
+                <path
+                    class="leg"
+                    d="M285 320 L250 375 L215 410"
+                />
+
+                <circle
+                    class="leg-joint"
+                    cx="250"
+                    cy="375"
+                    r="6"
+                />
+
+
+                <path
+                    class="leg"
+                    d="M325 315 L300 375 L270 415"
+                />
+
+                <circle
+                    class="leg-joint"
+                    cx="300"
+                    cy="375"
+                    r="6"
+                />
+
+
+                <path
+                    class="leg"
+                    d="M365 318 L350 375 L325 415"
+                />
+
+                <circle
+                    class="leg-joint"
+                    cx="350"
+                    cy="375"
+                    r="6"
+                />
+
+
+                <path
+                    class="leg"
+                    d="M405 320 L400 380 L385 420"
+                />
+
+                <circle
+                    class="leg-joint"
+                    cx="400"
+                    cy="380"
+                    r="6"
+                />
+
+
+                <path
+                    class="leg"
+                    d="M445 325 L450 380 L445 420"
+                />
+
+                <circle
+                    class="leg-joint"
+                    cx="450"
+                    cy="380"
+                    r="6"
+                />
+
+
+                <path
+                    class="leg"
+                    d="M485 330 L500 380 L505 415"
+                />
+
+                <circle
+                    class="leg-joint"
+                    cx="500"
+                    cy="380"
+                    r="6"
+                />
+
+
+                <path
+                    class="leg"
+                    d="M525 337 L550 380 L565 410"
+                />
+
+                <circle
+                    class="leg-joint"
+                    cx="550"
+                    cy="380"
+                    r="6"
+                />
+
+            </g>
+
+
+            <!-- =================================================
+                 SKULL
+            ================================================== -->
+
+            <g id="skull">
+
+                <path
+                    class="skull"
+                    d="
+                        M760 270
+
+                        C785 245
+                        825 245
+                        845 270
+
+                        C865 295
+                        850 330
+                        820 345
+
+                        L790 340
+
+                        L770 320
+
+                        L750 300
+
+                        Z
+                    "
+                />
+
+
+                <!-- Jaw -->
+
+                <path
+                    class="skull-detail"
+                    d="
+                        M765 315
+                        L805 350
+                        L840 325
+                    "
+                />
+
+
+                <!-- Eye sockets -->
+
+                <ellipse
+                    class="eye-socket"
+                    cx="795"
+                    cy="285"
+                    rx="11"
+                    ry="9"
+                />
+
+                <ellipse
+                    class="eye-socket"
+                    cx="828"
+                    cy="285"
+                    rx="11"
+                    ry="9"
+                />
+
+
+                <!-- Nose -->
+
+                <path
+                    class="skull-detail"
+                    d="
+                        M807 302
+                        L814 314
+                        L821 302
+                    "
+                />
+
+
+                <!-- Teeth -->
+
+                <path
+                    class="skull-detail"
+                    d="
+                        M782 330
+                        L788 342
+                        L795 332
+                        L802 345
+                        L810 334
+                        L818 345
+                        L826 330
+                        L834 340
+                    "
+                />
+
+            </g>
+
+
+            <!-- =================================================
+                 TAIL
+            ================================================== -->
+
+            <path
+                class="spine"
+                d="
+                    M180 340
+                    C130 350
+                    100 375
+                    80 410
+                    C65 435
+                    40 440
+                    25 425
+                "
+            />
+
+        </svg>
+
+    </div>
+
+
+    <!-- =====================================================
+         ERROR CONTENT
+    ====================================================== -->
+
+    <section class="error-card">
+
+        <div class="error-code">
+
+            {% block error_code %}
+            {% endblock error_code %}
+
+        </div>
+
+
+        <h1 class="error-title">
+
+            {% block error_title %}
+            {% endblock error_title %}
+
+        </h1>
+
+
+        <p class="error-message">
+
+            {% block error_message %}
+            {% endblock error_message %}
+
+        </p>
+
+
+        <div class="error-actions">
+
+            <a
+                href="/"
+                class="error-button primary"
+            >
+                بازگشت به خانه
+            </a>
+
+
+            <button
+                type="button"
+                class="error-button"
+                id="errorBackButton"
+            >
+                صفحه قبل
+            </button>
+
+        </div>
+
+
+        <div class="error-status">
+
+            کد خطا:
+
+            <strong>
+
+                {% block status_code %}
+                {% endblock status_code %}
+
+            </strong>
+
+        </div>
+
+    </section>
+
+
+</div>
+
+
+<script>
+
+(() => {
+
+    "use strict";
+
+
+    /* =========================================================
+       ELEMENTS
+    ========================================================= */
+
+    const world =
+        document.getElementById("errorWorld");
+
+    const dragon =
+        document.getElementById("skeleton");
+
+    const grid =
+        document.getElementById("backgroundGrid");
+
+    const backButton =
+        document.getElementById("errorBackButton");
+
+
+    if (!world || !dragon) {
+        return;
+    }
+
+
+    /* =========================================================
+       POINTER
+    ========================================================= */
+
+    let pointerX =
+        window.innerWidth / 2;
+
+    let pointerY =
+        window.innerHeight / 2;
+
+
+    let currentX =
+        pointerX;
+
+    let currentY =
+        pointerY;
+
+
+    window.addEventListener(
+        "pointermove",
+        event => {
+
+            pointerX =
+                event.clientX;
+
+            pointerY =
+                event.clientY;
+
+        },
+        {
+            passive: true
+        }
+    );
+
+
+    /* =========================================================
+       ANIMATION
+    ========================================================= */
+
+    const animate = () => {
+
+        currentX +=
+            (pointerX - currentX)
+            * 0.035;
+
+        currentY +=
+            (pointerY - currentY)
+            * 0.035;
+
+
+        const centerX =
+            window.innerWidth / 2;
+
+        const centerY =
+            window.innerHeight / 2;
+
+
+        const deltaX =
+            currentX - centerX;
+
+        const deltaY =
+            currentY - centerY;
+
+
+        /* -----------------------------------------
+           Creature movement
+        ----------------------------------------- */
+
+        const moveX =
+            Math.max(
+                -45,
+                Math.min(
+                    45,
+                    deltaX * 0.08
+                )
+            );
+
+
+        const moveY =
+            Math.max(
+                -35,
+                Math.min(
+                    35,
+                    deltaY * 0.06
+                )
+            );
+
+
+        const rotation =
+            Math.max(
+                -7,
+                Math.min(
+                    7,
+                    deltaX * 0.018
+                )
+            );
+
+
+        dragon.style.transform =
+            `
+            translate(
+                ${moveX}px,
+                ${moveY}px
+            )
+            rotate(${rotation}deg)
+            `;
+
+
+        /* -----------------------------------------
+           Background parallax
+        ----------------------------------------- */
+
+        if (grid) {
+
+            grid.style.setProperty(
+                "--grid-x",
+                `${deltaX * 0.015}px`
+            );
+
+            grid.style.setProperty(
+                "--grid-y",
+                `${deltaY * 0.015}px`
+            );
+        }
+
+
+        /* -----------------------------------------
+           Page radial light
+        ----------------------------------------- */
+
+        const percentX =
+            (currentX /
+                window.innerWidth) *
+            100;
+
+
+        const percentY =
+            (currentY /
+                window.innerHeight) *
+            100;
+
+
+        world.style.setProperty(
+            "--mouse-x",
+            `${percentX}%`
+        );
+
+
+        world.style.setProperty(
+            "--mouse-y",
+            `${percentY}%`
+        );
+
+
+        requestAnimationFrame(
+            animate
+        );
+    };
+
+
+    animate();
+
+
+    /* =========================================================
+       BACK BUTTON
+    ========================================================= */
+
+    if (backButton) {
+
+        backButton.addEventListener(
+            "click",
+            () => {
+
+                if (
+                    window.history.length > 1
+                ) {
+
+                    window.history.back();
+
+                } else {
+
+                    window.location.href =
+                        "/";
+
+                }
+
+            }
+        );
+
+    }
+
+
+})();
+
+</script>
+
+
+{% block extra_js %}
+{% endblock extra_js %}
+
+
+</body>
+</html>

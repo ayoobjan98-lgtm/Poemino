@@ -1,0 +1,18 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"></head>
+<body>
+    <p>{% trans "A new content manager registration is pending review." %}</p>
+    <table>
+        <tr><td><strong>{% trans "Username:" %}</strong></td><td>{{ username }}</td></tr>
+        <tr><td><strong>{% trans "Full Name:" %}</strong></td><td>{{ full_name }}</td></tr>
+        <tr><td><strong>{% trans "Phone:" %}</strong></td><td>{{ phone }}</td></tr>
+        <tr><td><strong>{% trans "Email:" %}</strong></td><td>{{ email }}</td></tr>
+        <tr><td><strong>{% trans "Submitted:" %}</strong></td><td>{{ created_at }}</td></tr>
+        <tr><td><strong>{% trans "Status:" %}</strong></td><td>{{ status }}</td></tr>
+    </table>
+    <p><a href="{{ review_link }}">{% trans "Review Registration" %}</a></p>
+    <p><small>{% trans "This link is only accessible to administrators." %}</small></p>
+</body>
+</html>

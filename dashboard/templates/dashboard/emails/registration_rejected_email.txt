@@ -1,0 +1,7 @@
+{% load i18n %}{% blocktrans %}Dear {{ full_name }},{% endblocktrans %}
+
+{% trans "After reviewing your submitted information, we have decided not to activate your content manager account at this time." %}
+
+{% trans "You may submit a new access request if circumstances change." %}
+
+{% trans "Thank you for your understanding." %}

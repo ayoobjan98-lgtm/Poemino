@@ -1,0 +1,263 @@
+{% extends 'dashboard/base.html' %}
+{% load i18n %}
+{% load jalali_tags %}
+
+{% block title %}{{ page_title }}{% endblock title %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <div class="card shadow mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">{{ poem.name }}</h5>
+
+                <span>
+                    {% if poem.status == 'w' %}
+                        <span class="badge bg-warning text-dark">
+                            {% trans "Awaiting" %}
+                        </span>
+
+                    {% elif poem.status == 'a' %}
+                        <span class="badge bg-success">
+                            {% trans "Approved" %}
+                        </span>
+
+                    {% else %}
+                        <span class="badge bg-danger">
+                            {% trans "Rejected" %}
+                        </span>
+                    {% endif %}
+                </span>
+            </div>
+
+
+            <div class="card-body">
+                
+                <div class="mb-3">
+                    <strong>{% trans "Author" %}:</strong>
+                    {{ poem.author }}
+                </div>
+
+                <div class="mb-3">
+                    <strong>{% trans "Created" %}:</strong>
+                    {{ poem.created_at|to_jalali:"%Y-%m-%d %H:%M" }}
+                </div>
+
+                <div class="mb-3">
+                    <strong>{% trans "Last Edited" %}:</strong>
+                    {{ poem.edited_at|to_jalali:"%Y-%m-%d %H:%M" }}
+                </div>
+
+                <hr>
+
+                <h6>{% trans "Poem Text" %}</h6>
+
+                <p class="text-muted" style="white-space: pre-wrap;">
+                    {{ poem.text }}
+                </p>
+
+                <div class="mb-3">
+                    <strong>{% trans "Poem Type" %} :</strong>
+                    {% if poem.poem_type == "ghazal" %}
+                        {% trans "Ghazal" %}
+                    {% elif poem.poem_type == "masnavi" %}
+                        {% trans "Masnavi" %}
+                    {% elif poem.poem_type == "robaee" %}
+                        {% trans "Robaee" %}
+                        
+                    {% elif poem.poem_type == "ghasideh" %}
+                        {% trans "Ghasideh" %}
+                        
+                    {% elif poem.poem_type == "nimaee" %}
+                        {% trans "Nimaee" %}
+                        
+                    {% elif poem.poem_type == "sepid" %}
+                        {% trans "Sepid" %}    
+                    {% endif %}  
+                </div>
+
+                <h6>{% trans "Audio" %}</h6>
+
+                {% if poem.voies %}
+                    <audio controls class="w-100 mb-2">
+                        <source
+                            src="{{ poem.voies.url }}"
+                            type="audio/mpeg"
+                        >
+
+                        {% trans "Your browser does not support the audio element." %}
+                    </audio>
+
+                    <div>
+                        <a
+                            href="{% url 'dashboard:audio_replace' pk=poem.pk %}"
+                            class="btn btn-sm btn-outline-secondary"
+                        >
+                            <i class="bi bi-arrow-repeat"></i>
+                            {% trans "Replace Audio" %}
+                        </a>
+
+                        <form
+                            method="post"
+                            action="{% url 'dashboard:audio_delete' pk=poem.pk %}"
+                            class="d-inline"
+                            onsubmit="return confirm('{% trans "Are you sure?" %}')"
+                        >
+                            {% csrf_token %}
+
+                            <button
+                                type="submit"
+                                class="btn btn-sm btn-outline-danger"
+                            >
+                                <i class="bi bi-trash"></i>
+                                {% trans "Delete Audio" %}
+                            </button>
+                        </form>
+                    </div>
+
+                {% else %}
+                    <p class="text-muted">
+                        {% trans "No audio file." %}
+                    </p>
+
+                    <a
+                        href="{% url 'dashboard:audio_replace' pk=poem.pk %}"
+                        class="btn btn-sm btn-outline-primary"
+                    >
+                        <i class="bi bi-upload"></i>
+                        {% trans "Upload Audio" %}
+                    </a>
+                {% endif %}
+            </div>
+
+            <div class="card-footer d-flex justify-content-between">
+                <div>
+                    <a
+                        href="{% url 'dashboard:poem_edit' pk=poem.pk %}"
+                        class="btn btn-primary"
+                    >
+                        <i class="bi bi-pencil"></i>
+                        {% trans "Edit" %}
+                    </a>
+
+                    {% if poem.status == 'w' %}
+                        <form
+                            method="post"
+                            action="{% url 'dashboard:poem_approve' pk=poem.pk %}"
+                            class="d-inline"
+                        >
+                            {% csrf_token %}
+
+                            <button
+                                type="submit"
+                                class="btn btn-success"
+                            >
+                                <i class="bi bi-check-lg"></i>
+                                {% trans "Approve" %}
+                            </button>
+                        </form>
+                    {% endif %}
+
+                    {% if poem.status != 'r' %}
+                        <form
+                            method="post"
+                            action="{% url 'dashboard:poem_reject' pk=poem.pk %}"
+                            class="d-inline"
+                        >
+                            {% csrf_token %}
+
+                            <button
+                                type="submit"
+                                class="btn btn-warning"
+                            >
+                                <i class="bi bi-x-lg"></i>
+                                {% trans "Reject" %}
+                            </button>
+                        </form>
+                    {% endif %}
+
+                    {% if poem.status == 'r' %}
+                        <form
+                            method="post"
+                            action="{% url 'dashboard:poem_restore' pk=poem.pk %}"
+                            class="d-inline"
+                            onsubmit="return confirm('{% trans "Return this rejected poem to the review queue?" %}')"
+                        >
+                            {% csrf_token %}
+
+                            <button
+                                type="submit"
+                                class="btn btn-outline-primary"
+                            >
+                                <i class="bi bi-arrow-counterclockwise"></i>
+                                {% trans "Return to Review" %}
+                            </button>
+                        </form>
+                    {% endif %}
+                </div>
+
+                <form
+                    method="post"
+                    action="{% url 'dashboard:poem_delete' pk=poem.pk %}"
+                    onsubmit="return confirm('{% trans "Permanently delete this poem?" %}')"
+                >
+                    {% csrf_token %}
+
+                    <button
+                        type="submit"
+                        class="btn btn-danger"
+                    >
+                        <i class="bi bi-trash"></i>
+                        {% trans "Delete Poem" %}
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card shadow">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    {% trans "Activity Log" %}
+                </h5>
+            </div>
+
+            <div class="card-body">
+                {% if activity_logs %}
+                    <ul class="list-group list-group-flush">
+                        {% for entry in activity_logs %}
+                            <li class="list-group-item py-2">
+                                <div class="d-flex justify-content-between">
+                                    <strong>
+                                        {{ entry.get_action_display }}
+                                    </strong>
+
+                                    <small class="text-muted">
+                                        {{ entry.timestamp|date:"Y-m-d H:i" }}
+                                    </small>
+                                </div>
+
+                                <small>
+                                    {{ entry.manager }}
+                                </small>
+
+                                {% if entry.description %}
+                                    <p class="mb-0 text-muted small">
+                                        {{ entry.description }}
+                                    </p>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+
+                {% else %}
+                    <p class="text-muted">
+                        {% trans "No activity recorded." %}
+                    </p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

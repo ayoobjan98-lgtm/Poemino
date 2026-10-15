@@ -1,0 +1,15 @@
+{% extends "errors/error_base.html" %}
+
+{% block title %}405 | عملیات مجاز نیست{% endblock title %}
+
+{% block icon %}bi-slash-circle{% endblock icon %}
+
+{% block error_code %}405{% endblock error_code %}
+
+{% block error_title %}عملیات مجاز نیست{% endblock error_title %}
+
+{% block error_message %}
+این نوع درخواست برای این آدرس پشتیبانی نمی‌شود. لطفاً عملیات دیگری را امتحان کنید.
+{% endblock error_message %}
+
+{% block status_code %}405{% endblock status_code %}

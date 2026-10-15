@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans "Login" %}{% endblock title %}
+
+{% block content %}
+<div class="main-wrapper">
+    <div class="poem-card" style="opacity:1; transform:none; max-width:500px; margin:0 auto;">
+        <div class="card-accent"></div>
+
+        <h3 class="hero-title" style="font-size:2rem; margin-bottom:1.5rem;">
+            {% trans "Login to Your Account" %}
+        </h3>
+
+        <form
+            method="post"
+            novalidate
+            id="login-form"
+            style="background:transparent; box-shadow:none; padding:0; border-radius:0;"
+        >
+            {% csrf_token %}
+
+            {% if form.non_field_errors %}
+                <div
+                    class="alert alert-danger"
+                    style="background:rgba(200,50,50,0.2); border:1px solid rgba(200,50,50,0.4); color:#ffcccc; border-radius:10px; padding:0.5rem 1rem; margin-bottom:1rem;"
+                >
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
+
+            <div style="margin-bottom:1.5rem;">
+                <label
+                    for="{{ form.username.id_for_label }}"
+                    style="color:var(--gold-light); font-weight:600; margin-bottom:0.3rem; display:block;"
+                >
+                    {{ form.username.label }}
+                </label>
+
+                {{ form.username }}
+
+                {% if form.username.errors %}
+                    <div class="text-danger small" style="color:#ffaaaa;">
+                        {{ form.username.errors }}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div style="margin-bottom:1.5rem;">
+                <label
+                    for="{{ form.password.id_for_label }}"
+                    style="color:var(--gold-light); font-weight:600; margin-bottom:0.3rem; display:block;"
+                >
+                    {{ form.password.label }}
+                </label>
+
+                {{ form.password }}
+
+                {% if form.password.errors %}
+                    <div class="text-danger small" style="color:#ffaaaa;">
+                        {{ form.password.errors }}
+                    </div>
+                {% endif %}
+            </div>
+
+            <button
+                type="submit"
+                class="btn-submit"
+                style="width:100%; margin-top:0.5rem;"
+            >
+                {% trans "Login" %}
+            </button>
+
+            <div style="text-align:center; margin-top:1.2rem;">
+                <a
+                    href="{% url 'forgot_password' %}"
+                    class="poem-link"
+                >
+                    {% trans "Forgot Password?" %}
+                </a>
+            </div>
+            <p style="text-align:center; margin-top:1.5rem; color:#dbbf8e;">
+                {% trans "Don't have an account?" %}
+                <a
+                    href="{% url 'signup' %}"
+                    class="poem-link"
+                    style="font-weight:bold;"
+                >
+                    {% trans "Sign Up" %}
+                </a>
+            </p>
+        </form>
+    </div>
+
+</div>
+
+<script>
+    var Url_data = "{% url 'api-token' %}";
+</script>
+<script src="{% static 'js/login.js' %}"></script>
+
+{% endblock content %}

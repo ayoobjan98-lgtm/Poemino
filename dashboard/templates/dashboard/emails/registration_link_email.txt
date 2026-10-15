@@ -1,0 +1,10 @@
+{% load i18n %}{% blocktrans %}Dear {{ full_name }},{% endblocktrans %}
+
+{% trans "Your request to become a content manager has been approved." %}
+
+{% trans "Please use the following link to complete your registration:" %}
+{{ link }}
+
+{% trans "This link is valid for 24 hours and can only be used once." %}
+
+{% trans "Thank you!" %}

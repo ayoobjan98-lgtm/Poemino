@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+
+{% block title %}{% trans "Video Verification" %}{% endblock title %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h4 class="mb-3">{% trans "Record a short video of your face" %}</h4>
+                    <p class="text-muted">{% trans "Please look into the camera and record 5 seconds. Ensure your face is clearly visible." %}</p>
+
+                    <div id="camera-area" class="mb-3">
+                        <video id="preview" autoplay playsinline muted style="width: 100%; max-width: 500px; transform: scaleX(-1); border-radius: 12px;"></video>
+                        <br>
+                        <button id="start-camera" class="btn btn-primary mt-2">{% trans "Start Camera" %}</button>
+                        <button id="record-btn" class="btn btn-danger mt-2" disabled>{% trans "Record" %}</button>
+                        <button id="stop-btn" class="btn btn-secondary mt-2" disabled>{% trans "Stop" %}</button>
+                        <span id="timer" class="ms-2"></span>
+                    </div>
+
+                    <div id="recorded-area" style="display:none;">
+                        <video id="recorded-preview" controls style="width: 100%; max-width: 500px; border-radius: 12px;"></video>
+                        <br>
+                        <button id="re-record" class="btn btn-warning mt-2">{% trans "Record Again" %}</button>
+                    </div>
+
+                    <form
+                        id="upload-form"
+                        method="post"
+                        action="{% url 'authentication:video_verify' %}"
+                        enctype="multipart/form-data"
+                    >
+                        {% csrf_token %}
+                        <input type="file" name="video" id="video-file" accept="video/*" style="display:none;" required>
+                        <button type="submit" id="submit-btn" class="btn btn-success mt-3" disabled>{% trans "Upload and Verify" %}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'authentication/js/camera.js' %}"></script>
+{% endblock content %}

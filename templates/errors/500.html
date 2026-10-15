@@ -1,0 +1,15 @@
+{% extends "errors/error_base.html" %}
+
+{% block title %}500 | خطای داخلی سرور{% endblock title %}
+
+{% block icon %}bi-server{% endblock icon %}
+
+{% block error_code %}500{% endblock error_code %}
+
+{% block error_title %}خطای داخلی سرور{% endblock error_title %}
+
+{% block error_message %}
+مشکلی هنگام پردازش درخواست شما در سرور رخ داده است. لطفاً چند لحظه بعد دوباره تلاش کنید.
+{% endblock error_message %}
+
+{% block status_code %}500{% endblock status_code %}

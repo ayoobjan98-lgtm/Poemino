@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+{% trans "Profile" %}
+{% endblock title %}
+
+{% block content %}
+<div class="profile-container">
+    <form method="post" id="profile-form">
+        {% csrf_token %}
+        
+        <!-- {{ form.username.label_tag }} {{ form.username }}
+        {{ form.first_name.label_tag }} {{ form.first_name }}
+        {{ form.last_name.label_tag }} {{ form.last_name }}
+        {{ form.email.label_tag }} {{ form.email }} -->
+        <label for="username">{{ form.username.label_tag }}</label>
+        <input type="text" name="username"  id="username">
+        
+        <label for="first_name">{{ form.first_name.label_tag }}</label>
+        <input type="text" name="first_name" id="first_name">
+        
+        <label for="last_name">{{ form.last_name.label_tag }}</label>
+        
+        <input type="text" name="last_name"  id="last_name">
+
+        <label for="email">{{ form.email.label_tag }}</label>
+        <input type="email" name="email" id="email">
+        
+        <div class="form-group">
+            {% if user.avatar %}
+                <label>{% trans "Current Image:" %}</label><br>
+                    <img src="{{ user.avatar.url }}" alt="{% trans 'Current avatar' %}" 
+                        width="50" height="50" 
+                        style="border-radius:50%; object-fit:cover; border:1px solid #ccc;">
+            {% endif %}
+            <br>
+            <label for="{{ form.avatar.id_for_label }}">{% trans "Change Image:" %}</label>
+            <input type="file" name="{{ form.avatar.id_for_label }}" id="avatar">
+        </div>
+
+        <button type="submit">{% trans "Save Changes" %}</button>
+        <a class="btn btn-outline-danger ms-5" href="{% url 'logout' %}">{% trans "Logout" %}</a>
+    </form>
+</div>
+
+<script>
+    const Url = "{% url 'api-profile' %}";
+document.getElementById('{{ form.avatar.id_for_label }}').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            document.getElementById('avatar-preview').src = event.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+});
+</script>
+<script src="{% static 'js/profile.js' %}"></script>
+{% endblock %}
+
+
+

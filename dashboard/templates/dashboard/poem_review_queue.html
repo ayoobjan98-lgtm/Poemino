@@ -1,0 +1,99 @@
+{% extends 'dashboard/base.html' %}
+{% load i18n %}
+{% load jalali_tags %}
+
+{% block title %}{{ page_title }}{% endblock title %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h4>
+        {% trans "Review Queue" %}
+        {% if page_obj.paginator.count %}
+            <span class="badge bg-warning text-dark">{{ page_obj.paginator.count }}</span>
+        {% endif %}
+    </h4>
+</div>
+
+{% if poems %}
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>{% trans "ID" %}</th>
+                    <th>{% trans "Name" %}</th>
+                    <th>{% trans "Author" %}</th>
+                    <th>{% trans "Submitted" %}</th>
+                    <th>{% trans "Waiting" %}</th>
+                    <th>{% trans "Actions" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for poem in poems %}
+                <tr>
+                    <td>{{ poem.pk }}</td>
+                    <td>
+                        <a href="{% url 'dashboard:poem_detail' pk=poem.pk %}">
+                            {{ poem.name|default:poem.text|truncatechars:40 }}
+                        </a>
+                    </td>
+                    <td>{{ poem.author.username|default:"—" }}</td>
+                    <td>{{ poem.created_at|to_jalali:"%Y/%m/%d %H:%M" }}</td>
+                    <td>{{ poem.created_at|jalali_timesince }}</td>
+                    <td>
+                        <div class="d-flex gap-1">
+                            <a href="{% url 'dashboard:poem_detail' pk=poem.pk %}"
+                               class="btn btn-sm btn-outline-primary"
+                               title="{% trans 'Review' %}">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <form method="post"
+                                  action="{% url 'dashboard:poem_approve' pk=poem.pk %}"
+                                  class="d-inline">
+                                {% csrf_token %}
+                                <button type="submit"
+                                        class="btn btn-sm btn-success"
+                                        title="{% trans 'Approve' %}">
+                                    <i class="bi bi-check-lg"></i>
+                                </button>
+                            </form>
+                            <form method="post"
+                                  action="{% url 'dashboard:poem_reject' pk=poem.pk %}"
+                                  class="d-inline">
+                                {% csrf_token %}
+                                <button type="submit"
+                                        class="btn btn-sm btn-warning"
+                                        title="{% trans 'Reject' %}">
+                                    <i class="bi bi-x-lg"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% else %}
+    {% if invalid_date %}
+        <div class="alert alert-warning text-center">
+            {% trans "Invalid date" %}
+        </div>
+    {% elif poem_date_search %}
+        <div class="alert alert-info text-center">
+            {% trans "Poem not found" %}
+        </div>
+    {% else %}
+        <div class="alert alert-success text-center">
+            <i class="bi bi-check2-circle me-1"></i>
+            {% trans "No poems are waiting for review." %}
+        </div>
+    {% endif %}
+    <div class="text-center mt-3">
+        <a href="?" class="btn btn-outline-primary btn-sm">
+            {% trans "Clear Filters" %}
+        </a>
+    </div>
+{% endif %}
+
+{% include 'dashboard/partials/pagination.html' %}
+{% endblock content %}

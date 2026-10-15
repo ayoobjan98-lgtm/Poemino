@@ -1,0 +1,9 @@
+{% load i18n %}{% blocktrans %}Dear {{ full_name }},{% endblocktrans %}
+
+{% trans "Your registration has been reviewed and approved." %}
+
+{% trans "Your content manager account is now active. You may log in using your username:" %} {{ username }}
+
+{% trans "Go to Dashboard:" %} {{ dashboard_url }}
+
+{% trans "Welcome aboard!" %}

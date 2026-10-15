@@ -1,0 +1,167 @@
+:root {
+    --sidebar-width: 250px;
+
+    /* Light theme (default) */
+    --bg-body: #f8f9fa;
+    --bg-sidebar: #ffffff;
+    --color-sidebar-text: #212529;
+    --bg-card: #ffffff;
+    --color-text: #212529;
+    --color-heading: #0d6efd;
+    --border-color: rgba(0, 0, 0, 0.125);
+    --table-header-bg: #f1f3f5;
+    --table-hover-bg: #f8f9fa;
+    --badge-warning-bg: #ffc107;
+    --badge-warning-color: #212529;
+    --badge-success-bg: #198754;
+    --badge-success-color: #ffffff;
+    --badge-danger-bg: #dc3545;
+    --badge-danger-color: #ffffff;
+    --alert-info-bg: #cff4fc;
+    --alert-info-border: #b6effb;
+    --alert-info-color: #055160;
+    --btn-outline-danger-color: #dc3545;
+    --btn-outline-danger-border: #dc3545;
+}
+
+[data-theme="dark"] {
+    --bg-body: #1a1a2e;
+    --bg-sidebar: #16213e;
+    --color-sidebar-text: #e0e0e0;
+    --bg-card: #0f3460;
+    --color-text: #e0e0e0;
+    --color-heading: #e94560;
+    --border-color: rgba(255, 255, 255, 0.15);
+    --table-header-bg: #16213e;
+    --table-hover-bg: #533483;
+    --badge-warning-bg: #ffc107;
+    --badge-warning-color: #212529;
+    --badge-success-bg: #198754;
+    --badge-success-color: #ffffff;
+    --badge-danger-bg: #dc3545;
+    --badge-danger-color: #ffffff;
+    --alert-info-bg: #cff4fc;
+    --alert-info-border: #b6effb;
+    --alert-info-color: #055160;
+    --btn-outline-danger-color: #dc3545;
+    --btn-outline-danger-border: #dc3545;
+}
+
+body {
+    font-family: 'Vazirmatn', sans-serif;
+    background-color: var(--bg-body);
+    color: var(--color-text);
+    transition: background-color 0.3s, color 0.3s;
+    margin: 0;
+    padding: 0;
+}
+
+#sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0; /* RTL layout: sidebar on right */
+    width: var(--sidebar-width);
+    overflow-y: auto;
+    z-index: 1000;
+    background-color: var(--bg-sidebar);
+    color: var(--color-sidebar-text);
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+    border-left: 1px solid var(--border-color);
+}
+
+#page-content-wrapper {
+    margin-right: var(--sidebar-width); /* for RTL */
+    min-height: 100vh;
+    background-color: var(--bg-body);
+    transition: background-color 0.3s, margin 0.3s;
+}
+
+/* Mobile: sidebar hidden off-screen, page content full width */
+@media (max-width: 767.98px) {
+    #sidebar {
+        transform: translateX(100%); /* move off-screen to the right */
+        z-index: 999;
+    }
+    #sidebar.show {
+        transform: translateX(0);
+    }
+    #page-content-wrapper {
+        margin-right: 0;
+    }
+    /* Show hamburger button */
+    #sidebar-toggle-btn {
+        display: inline-block !important;
+    }
+}
+
+/* Sidebar nav pills styling */
+.nav-pills .nav-link {
+    color: var(--color-sidebar-text);
+}
+.nav-pills .nav-link.active {
+    background-color: var(--color-heading);
+    color: #fff;
+}
+
+/* Return to Site & Theme toggle button */
+.return-site-btn {
+    border: 1px solid #000 !important;
+    background-color: #ffffff !important;
+    color: #000 !important;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    transition: background-color 0.2s, border-color 0.2s;
+}
+.return-site-btn:hover {
+    background-color: #f1f1f1 !important;
+    border-color: #333 !important;
+    color: #000 !important;
+}
+
+/* Cards, tables, badges, alerts using variables */
+.card {
+    border: none;
+    border-radius: 0.5rem;
+    background-color: var(--bg-card);
+    color: var(--color-text);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: background-color 0.3s, color 0.3s;
+}
+.card-header {
+    background-color: var(--bg-card);
+    border-bottom: 1px solid var(--border-color);
+}
+.table {
+    color: var(--color-text);
+}
+.table thead th {
+    font-weight: 600;
+    font-size: 0.9rem;
+    background-color: var(--table-header-bg);
+    color: var(--color-text);
+}
+.table tbody tr:hover {
+    background-color: var(--table-hover-bg);
+}
+.badge.bg-warning {
+    background-color: var(--badge-warning-bg) !important;
+    color: var(--badge-warning-color) !important;
+}
+.badge.bg-success {
+    background-color: var(--badge-success-bg) !important;
+    color: var(--badge-success-color) !important;
+}
+.badge.bg-danger {
+    background-color: var(--badge-danger-bg) !important;
+    color: var(--badge-danger-color) !important;
+}
+.alert-info {
+    background-color: var(--alert-info-bg);
+    border-color: var(--alert-info-border);
+    color: var(--alert-info-color);
+}
+
+/* Theme toggle icon styling */
+#theme-toggle, #sidebar-theme-toggle {
+    cursor: pointer;
+}

@@ -1,0 +1,15 @@
+{% extends "errors/error_base.html" %}
+
+{% block title %}403 | دسترسی مجاز نیست{% endblock title %}
+
+{% block icon %}bi-shield-lock{% endblock icon %}
+
+{% block error_code %}403{% endblock error_code %}
+
+{% block error_title %}دسترسی مجاز نیست{% endblock error_title %}
+
+{% block error_message %}
+شما اجازه دسترسی به این بخش را ندارید. اگر فکر می‌کنید این یک اشتباه است، با مدیر سامانه تماس بگیرید.
+{% endblock error_message %}
+
+{% block status_code %}403{% endblock status_code %}

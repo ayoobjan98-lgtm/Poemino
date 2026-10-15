@@ -1,0 +1,23 @@
+{% load i18n %}
+<nav class="navbar navbar-light shadow-sm px-3 mb-3"
+     style="background-color: var(--bg-card) !important; border-bottom: 1px solid var(--border-color);">
+    <div class="d-flex align-items-center">
+        <button class="btn btn-link d-md-none me-2" id="sidebar-toggle-btn" style="color: var(--color-text);">
+            <i class="bi bi-list" style="font-size:1.5rem;"></i>
+        </button>
+        <span class="navbar-brand mb-0 h6" style="color: var(--color-text);">
+            {% block page_title %}{{ page_title|default:_("Dashboard") }}{% endblock page_title %}
+        </span>
+    </div>
+    <div class="d-flex align-items-center flex-wrap gap-2">
+        <span class="me-2 d-none d-md-inline" style="color: var(--color-text);">
+            {% trans "Welcome" %}, {{ user.username }}
+        </span>
+
+        {% include 'partials/nav_search_filter.html' with show_status_filter=True %}
+
+        <a href="{% url 'logout' %}" class="btn btn-outline-danger btn-sm">
+            <i class="bi bi-box-arrow-right"></i> {% trans "Logout" %}
+        </a>
+    </div>
+</nav>

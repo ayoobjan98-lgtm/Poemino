@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Enter OTP" %}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h3>{% trans "Enter OTP" %}</h3>
+    <p>{% trans "A 6-digit code has been sent to your email." %}</p>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="otp" maxlength="6" class="form-control" style="width:200px; display:inline-block;">
+        <button type="submit" class="btn btn-primary ms-2">{% trans "Verify OTP" %}</button>
+    </form>
+</div>
+{% endblock %}

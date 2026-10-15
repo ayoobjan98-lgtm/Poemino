@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Dashboard Verification" %}{% endblock title %}
+
+{% block content %}
+<div class="main-wrapper">
+    <div class="poem-card" style="opacity:1; transform:none; max-width:500px; margin:0 auto; text-align:center;">
+        <div class="card-accent"></div>
+        <h3 class="hero-title" style="font-size:2rem;">{% trans "Dashboard Verification" %}</h3>
+        <p style="color:#f5e7d3;">{% trans "You need to verify your identity to access the dashboard." %}</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn-submit">{% trans "Send OTP to Email" %}</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

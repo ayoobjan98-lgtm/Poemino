@@ -1,0 +1,2133 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Poemino 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-15 09:40+0330\n"
+"PO-Revision-Date: 2026-10-01 20:02+0330\n"
+"Last-Translator:   <afsonshop3@gmail.com>\n"
+"Language-Team: Persian <fa@li.org>\n"
+"Language: fa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Translated-Using: django-rosetta 0.10.3\n"
+
+#: .\MakerPom\forms.py:11 .\MakerPom\models.py:27 .\dashboard\forms.py:19
+msgid "Poem Name"
+msgstr "نام شعر"
+
+#: .\MakerPom\forms.py:12 .\MakerPom\models.py:28 .\dashboard\forms.py:20
+#: .\dashboard\templates\dashboard\poem_detail.html:53
+#: .\templates\index.html:53 .\templates\recent.html:22
+msgid "Poem Text"
+msgstr "متن شعر"
+
+#: .\MakerPom\forms.py:13
+msgid "Select Voice"
+msgstr "انتخاب صدا"
+
+#: .\MakerPom\forms.py:14 .\MakerPom\models.py:44
+#: .\dashboard\templates\dashboard\poem_detail.html:60
+#: .\dashboard\templates\dashboard\poem_list.html:15
+#: .\templates\detail-poem.html:32
+#: .\templates\partials\nav_search_filter.html:21
+#: .\templates\partials\nav_search_filter.html:69
+#: .\templates\partials\nav_search_filter.html:112
+#: .\templates\partials\poem_search_filter.html:22
+msgid "Poem Type"
+msgstr "نوع شعر"
+
+#: .\MakerPom\models.py:13
+msgid "Awaiting Approval"
+msgstr "در انتظار تأیید"
+
+#: .\MakerPom\models.py:14 .\accounts\models.py:58 .\dashboard\models.py:25
+#: .\dashboard\models.py:76 .\dashboard\models.py:139
+#: .\dashboard\templates\dashboard\index.html:43
+#: .\dashboard\templates\dashboard\poem_detail.html:22
+#: .\dashboard\templates\dashboard\poem_list.html:57
+msgid "Approved"
+msgstr "تأیید شده"
+
+#: .\MakerPom\models.py:15 .\accounts\models.py:59 .\dashboard\models.py:26
+#: .\dashboard\models.py:77 .\dashboard\models.py:140
+#: .\dashboard\templates\dashboard\index.html:57
+#: .\dashboard\templates\dashboard\poem_detail.html:27
+#: .\dashboard\templates\dashboard\poem_list.html:59
+msgid "Rejected"
+msgstr "رد شده"
+
+#: .\MakerPom\models.py:19 .\MakerPom\models.py:48
+#: .\dashboard\templates\dashboard\poem_detail.html:62
+#: .\dashboard\templates\dashboard\poem_list.html:34
+#: .\templates\detail-poem.html:34
+msgid "Ghazal"
+msgstr "غزل"
+
+#: .\MakerPom\models.py:20 .\dashboard\templates\dashboard\poem_detail.html:64
+#: .\dashboard\templates\dashboard\poem_list.html:36
+#: .\templates\detail-poem.html:36
+msgid "Masnavi"
+msgstr "مثنوی"
+
+#: .\MakerPom\models.py:21 .\dashboard\templates\dashboard\poem_detail.html:66
+#: .\dashboard\templates\dashboard\poem_list.html:38
+#: .\templates\detail-poem.html:38
+msgid "Robaee"
+msgstr "رباعی"
+
+#: .\MakerPom\models.py:22 .\dashboard\templates\dashboard\poem_detail.html:69
+#: .\dashboard\templates\dashboard\poem_list.html:41
+#: .\templates\detail-poem.html:41
+msgid "Ghasideh"
+msgstr "قصیده"
+
+#: .\MakerPom\models.py:23 .\dashboard\templates\dashboard\poem_detail.html:72
+#: .\dashboard\templates\dashboard\poem_list.html:44
+#: .\templates\detail-poem.html:44
+msgid "Nimaee"
+msgstr "نیمایی"
+
+#: .\MakerPom\models.py:24 .\dashboard\templates\dashboard\poem_detail.html:75
+#: .\dashboard\templates\dashboard\poem_list.html:47
+#: .\templates\detail-poem.html:47
+msgid "Sepid"
+msgstr "سپید"
+
+#: .\MakerPom\models.py:29 .\dashboard\forms.py:43
+msgid "Audio File"
+msgstr "فایل صوتی"
+
+#: .\MakerPom\models.py:34 .\dashboard\templates\dashboard\poem_detail.html:37
+#: .\dashboard\templates\dashboard\poem_list.html:16
+#: .\dashboard\templates\dashboard\poem_review_queue.html:24
+#: .\templates\detail-poem.html:77 .\templates\index.html:55
+#: .\templates\partials\nav_search_filter.html:57
+#: .\templates\partials\nav_search_filter.html:100
+#: .\templates\partials\poem_search_filter.html:12
+#: .\templates\partials\poem_search_filter.html:14 .\templates\recent.html:62
+msgid "Author"
+msgstr "نویسنده"
+
+#: .\MakerPom\models.py:37 .\authentication\models.py:57
+#: .\dashboard\models.py:80 .\dashboard\models.py:143
+#: .\dashboard\templates\dashboard\poem_list.html:17
+msgid "Status"
+msgstr "وضعیت"
+
+#: .\MakerPom\views.py:117
+#: .\dashboard\templates\dashboard\poem_review_queue.html:83
+msgid "Poem not found"
+msgstr "شعر یافت نشد"
+
+#: .\accounts\admin.py:27 .\accounts\models.py:34
+msgid "Dashboard Access"
+msgstr "دسترسی به داشبورد"
+
+#: .\accounts\admin.py:36
+msgid "Permissin Api"
+msgstr "مجوز API"
+
+#: .\accounts\admin.py:45 .\templates\accounts\profile.html:6
+#: .\templates\base.html:85 .\templates\base.html:88
+msgid "Profile"
+msgstr "پروفایل"
+
+#: .\accounts\email_service.py:20
+msgid "Password Reset Request"
+msgstr "درخواست بازنشانی رمز عبور"
+
+#: .\accounts\forms.py:14 .\accounts\forms.py:16 .\accounts\models.py:11
+#: .\dashboard\models.py:130
+msgid "Username"
+msgstr "نام کاربری"
+
+#: .\accounts\forms.py:19 .\accounts\forms.py:20 .\accounts\forms.py:63
+#: .\dashboard\forms.py:101 .\dashboard\models.py:131
+msgid "Password"
+msgstr "رمز عبور"
+
+#: .\accounts\forms.py:39
+msgid "Too many failed login attempts. Please try again later."
+msgstr ""
+"تعداد تلاش‌های ناموفق ورود بیش از حد مجاز است. لطفاً بعداً دوباره تلاش کنید."
+
+#: .\accounts\forms.py:43
+msgid "Invalid username or password."
+msgstr "نام کاربری یا رمز عبور نامعتبر است."
+
+#: .\accounts\forms.py:45
+msgid "This account has been deactivated."
+msgstr "این حساب کاربری غیرفعال شده است."
+
+#: .\accounts\forms.py:67
+msgid "Password Confirmation"
+msgstr "تأیید رمز عبور"
+
+#: .\accounts\forms.py:86
+msgid "Face image must be under 5 MB."
+msgstr "تصویر چهره باید کمتر از ۵ مگابایت باشد."
+
+#: .\accounts\forms.py:88
+msgid "Uploaded file is not a valid image."
+msgstr "فایل آپلود شده تصویر معتبری نیست."
+
+#: .\accounts\forms.py:97
+msgid "username"
+msgstr "نام کاربری"
+
+#: .\accounts\forms.py:111 .\dashboard\forms.py:70 .\dashboard\models.py:69
+msgid "Full Name"
+msgstr "نام کامل"
+
+#: .\accounts\forms.py:115 .\accounts\forms.py:140
+msgid "Email"
+msgstr "ایمیل"
+
+#: .\accounts\forms.py:119 .\dashboard\forms.py:72
+msgid "Message (optional)"
+msgstr "پیام (اختیاری)"
+
+#: .\accounts\forms.py:134
+msgid "Email does not match your account."
+msgstr "ایمیل با حساب کاربری شما مطابقت ندارد."
+
+#: .\accounts\forms.py:141
+msgid "Enter your email"
+msgstr "ایمیل خود را وارد کنید"
+
+#: .\accounts\forms.py:148
+msgid "No account found with this email address."
+msgstr "حسابی با این آدرس ایمیل یافت نشد."
+
+#: .\accounts\forms.py:154
+msgid "New Password"
+msgstr "رمز عبور جدید"
+
+#: .\accounts\forms.py:159
+msgid "Confirm New Password"
+msgstr "تأیید رمز عبور جدید"
+
+#: .\accounts\forms.py:168 .\dashboard\forms.py:125
+#: .\dashboard\templates\dashboard\register.html:180
+msgid "Passwords do not match."
+msgstr "رمزهای عبور مطابقت ندارند."
+
+#: .\accounts\managers.py:8
+msgid "The Username field must be set"
+msgstr "فیلد نام کاربری باید تنظیم شود"
+
+#: .\accounts\managers.py:24
+msgid "Superuser must have is_staff=True."
+msgstr "کاربر فوق‌العاده باید is_staff=True داشته باشد."
+
+#: .\accounts\managers.py:26
+msgid "Superuser must have is_superuser=True."
+msgstr "کاربر فوق‌العاده باید is_superuser=True داشته باشد."
+
+#: .\accounts\models.py:15 .\dashboard\forms.py:71 .\dashboard\forms.py:97
+#: .\dashboard\models.py:70
+msgid "Email Address"
+msgstr "آدرس ایمیل"
+
+#: .\accounts\models.py:20
+msgid "Profile Picture"
+msgstr "تصویر پروفایل"
+
+#: .\accounts\models.py:22
+msgid "First Name"
+msgstr "نام"
+
+#: .\accounts\models.py:23
+msgid "Last Name"
+msgstr "نام خانوادگی"
+
+#: .\accounts\models.py:24
+msgid "About Me"
+msgstr "درباره من"
+
+#: .\accounts\models.py:25
+msgid "Date of Birth"
+msgstr "تاریخ تولد"
+
+#: .\accounts\models.py:27
+msgid "Active"
+msgstr "فعال"
+
+#: .\accounts\models.py:28
+msgid "Admin Access"
+msgstr "دسترسی ادمین"
+
+#: .\accounts\models.py:29
+msgid "Superuser Status"
+msgstr "وضعیت کاربر فوق‌العاده"
+
+#: .\accounts\models.py:30
+msgid "Date Joined"
+msgstr "تاریخ عضویت"
+
+#: .\accounts\models.py:35
+msgid "Designates whether the user can access the content manager dashboard."
+msgstr ""
+"مشخص می‌کند که آیا کاربر می‌تواند به داشبورد مدیریت محتوا دسترسی داشته باشد."
+
+#: .\accounts\models.py:40
+msgid "Can Request Dashboard"
+msgstr "می‌تواند درخواست داشبورد بدهد"
+
+#: .\accounts\models.py:41
+msgid "Allow this user to access the dashboard access request page."
+msgstr "اجازه دسترسی این کاربر به صفحه درخواست دسترسی داشبورد."
+
+#: .\accounts\models.py:45
+msgid "Dashboard Request Used"
+msgstr "درخواست داشبورد استفاده شده"
+
+#: .\accounts\models.py:46
+msgid ""
+"Indicates whether the user has already used the dashboard access request "
+"page."
+msgstr ""
+"نشان می‌دهد که آیا کاربر قبلاً از صفحه درخواست دسترسی داشبورد استفاده کرده است."
+
+#: .\accounts\models.py:50
+msgid "Dashboard Request Used At"
+msgstr "زمان استفاده از درخواست داشبورد"
+
+#: .\accounts\models.py:51
+msgid "Date and time when the dashboard access request page was used."
+msgstr "تاریخ و زمان استفاده از صفحه درخواست دسترسی داشبورد."
+
+#: .\accounts\models.py:56
+msgid "No Request"
+msgstr "بدون درخواست"
+
+#: .\accounts\models.py:57 .\authentication\models.py:50
+#: .\dashboard\models.py:75
+msgid "Pending"
+msgstr "در انتظار"
+
+#: .\accounts\models.py:62
+msgid "Dashboard Request Status"
+msgstr "وضعیت درخواست داشبورد"
+
+#: .\accounts\models.py:63
+msgid "Current status of the dashboard access request."
+msgstr "وضعیت فعلی درخواست دسترسی به داشبورد."
+
+#: .\accounts\models.py:66
+msgid "View Pom"
+msgstr "مشاهده شعر"
+
+#: .\accounts\models.py:67
+msgid "Create Pom"
+msgstr "ایجاد شعر"
+
+#: .\accounts\models.py:68
+msgid "Update Pom"
+msgstr "به‌روزرسانی شعر"
+
+#: .\accounts\models.py:69
+msgid "Delete Pom"
+msgstr "حذف شعر"
+
+#: .\accounts\models.py:70
+msgid "API View"
+msgstr "مشاهده API"
+
+#: .\accounts\models.py:79 .\accounts\models.py:95 .\accounts\models.py:122
+#: .\authentication\models.py:25 .\authentication\models.py:42
+#: .\authentication\models.py:74 .\authentication\models.py:114
+msgid "User"
+msgstr "کاربر"
+
+#: .\accounts\models.py:80
+msgid "Users"
+msgstr "کاربران"
+
+#: .\accounts\models.py:97
+msgid "Token"
+msgstr "توکن"
+
+#: .\accounts\models.py:98
+msgid "Created At"
+msgstr "ایجاد شده در"
+
+#: .\accounts\models.py:99
+msgid "Is Used"
+msgstr "استفاده شده"
+
+#: .\accounts\models.py:102
+msgid "Password Reset Token"
+msgstr "توکن بازنشانی رمز عبور"
+
+#: .\accounts\models.py:103
+msgid "Password Reset Tokens"
+msgstr "توکن‌های بازنشانی رمز عبور"
+
+#: .\accounts\models.py:124
+msgid "Face Photo"
+msgstr "عکس چهره"
+
+#: .\accounts\models.py:125 .\dashboard\models.py:134
+msgid "Video Recording"
+msgstr "ضبط ویدیو"
+
+#: .\accounts\models.py:126 .\dashboard\models.py:50 .\dashboard\models.py:203
+msgid "Timestamp"
+msgstr "برچسب زمانی"
+
+#: .\accounts\models.py:131
+msgid "Login Verification"
+msgstr "تأیید ورود"
+
+#: .\accounts\models.py:132
+msgid "Login Verifications"
+msgstr "تأییدهای ورود"
+
+#: .\accounts\views.py:146 .\dashboard\views\registration.py:100
+msgid "Your dashboard access request has been submitted for review."
+msgstr "درخواست دسترسی به داشبورد شما برای بررسی ارسال شد."
+
+#: .\accounts\views.py:174
+msgid "Password reset instructions have been sent to your email."
+msgstr "دستورالعمل‌های بازنشانی رمز عبور به ایمیل شما ارسال شد."
+
+#: .\accounts\views.py:189 .\accounts\views.py:197
+msgid "Invalid or expired token."
+msgstr "توکن نامعتبر یا منقضی شده است."
+
+#: .\accounts\views.py:207
+msgid "Your password has been reset successfully."
+msgstr "رمز عبور شما با موفقیت بازنشانی شد."
+
+#: .\authentication\apps.py:8
+msgid "Authentication"
+msgstr "احراز هویت"
+
+#: .\authentication\models.py:27
+msgid "Reference Face Image"
+msgstr "تصویر مرجع چهره"
+
+#: .\authentication\models.py:28
+msgid "Face Embedding"
+msgstr "امبدینگ چهره"
+
+#: .\authentication\models.py:33
+msgid "Face Reference"
+msgstr "مرجع چهره"
+
+#: .\authentication\models.py:34
+msgid "Face References"
+msgstr "مراجع چهره"
+
+#: .\authentication\models.py:44
+msgid "Verification Video"
+msgstr "ویدیوی تأیید"
+
+#: .\authentication\models.py:51
+msgid "Face Verified"
+msgstr "چهره تأیید شد"
+
+#: .\authentication\models.py:52
+msgid "Liveness Passed"
+msgstr "بررسی زنده بودن موفق"
+
+#: .\authentication\models.py:53
+msgid "Failed"
+msgstr "ناموفق"
+
+#: .\authentication\models.py:54
+msgid "Completed"
+msgstr "تکمیل شده"
+
+#: .\authentication\models.py:61 .\authentication\models.py:82
+msgid "Verification Session"
+msgstr "جلسه تأیید"
+
+#: .\authentication\models.py:62
+msgid "Verification Sessions"
+msgstr "جلسات تأیید"
+
+#: .\authentication\models.py:84
+msgid "OTP Hash"
+msgstr "هش OTP"
+
+#: .\authentication\models.py:86 .\authentication\models.py:117
+msgid "Expires At"
+msgstr "منقضی می‌شود در"
+
+#: .\authentication\models.py:91
+msgid "OTP Token"
+msgstr "توکن OTP"
+
+#: .\authentication\models.py:92
+msgid "OTP Tokens"
+msgstr "توکن‌های OTP"
+
+#: .\authentication\models.py:122
+msgid "Dashboard Access Record"
+msgstr "رکورد دسترسی داشبورد"
+
+#: .\authentication\models.py:123
+msgid "Dashboard Access Records"
+msgstr "رکوردهای دسترسی داشبورد"
+
+#: .\authentication\services\otp.py:58
+msgid "No completed verification session found."
+msgstr "جلسه تأیید تکمیل‌شده‌ای یافت نشد."
+
+#: .\authentication\services\otp.py:66
+msgid "Your Dashboard OTP"
+msgstr "کد OTP داشبورد شما"
+
+#: .\authentication\services\otp.py:98
+msgid "No active OTP. Please request a new one."
+msgstr "OTP فعالی وجود ندارد. لطفاً یک کد جدید درخواست کنید."
+
+#: .\authentication\services\otp.py:101
+msgid "OTP verified."
+msgstr "OTP تأیید شد."
+
+#: .\authentication\services\otp.py:102
+msgid "Invalid OTP or expired."
+msgstr "OTP نامعتبر یا منقضی شده است."
+
+#: .\authentication\templates\authentication\error.html:4
+msgid "Verification Error"
+msgstr "خطای تأیید"
+
+#: .\authentication\templates\authentication\error.html:12
+msgid "We could not complete the verification"
+msgstr "نتوانستیم تأیید را تکمیل کنیم"
+
+#: .\authentication\templates\authentication\error.html:14
+msgid ""
+"No face reference was found for your account. Please contact the site "
+"administrator."
+msgstr "هیچ مرجع چهره‌ای برای حساب شما یافت نشد. لطفاً با مدیر سایت تماس بگیرید."
+
+#: .\authentication\templates\authentication\error.html:17
+#: .\dashboard\templates\dashboard\register_success.html:14
+#: .\dashboard\templates\dashboard\request_success.html:14
+msgid "Return to Home"
+msgstr "بازگشت به صفحه اصلی"
+
+#: .\authentication\templates\authentication\otp.html:4
+#: .\authentication\templates\authentication\otp.html:8
+#: .\templates\verification\verify_otp.html:4
+#: .\templates\verification\verify_otp.html:10
+msgid "Enter OTP"
+msgstr "کد ارسالی را وارد کنید"
+
+#: .\authentication\templates\authentication\otp.html:9
+msgid "A 6-digit code has been sent to your email."
+msgstr "یک کد ۶ رقمی به ایمیل شما ارسال شده است."
+
+#: .\authentication\templates\authentication\otp.html:13
+#: .\templates\verification\verify_otp.html:15
+msgid "Verify OTP"
+msgstr "تأیید OTP"
+
+#: .\authentication\templates\authentication\verify.html:4
+msgid "Video Verification"
+msgstr "تأیید ویدیویی"
+
+#: .\authentication\templates\authentication\verify.html:12
+msgid "Record a short video of your face"
+msgstr "یک ویدیوی کوتاه از چهره خود ضبط کنید"
+
+#: .\authentication\templates\authentication\verify.html:13
+msgid ""
+"Please look into the camera and record 5 seconds. Ensure your face is "
+"clearly visible."
+msgstr ""
+"لطفاً به دوربین نگاه کنید و ۵ ثانیه ضبط کنید. مطمئن شوید چهره‌تان به وضوح دیده "
+"می‌شود."
+
+#: .\authentication\templates\authentication\verify.html:18
+#: .\dashboard\templates\dashboard\register.html:91
+#: .\dashboard\templates\dashboard\register.html:118
+#: .\templates\accounts\login_verification.html:36
+#: .\templates\verification\camera.html:24
+#: .\templates\verification\challenge.html:31
+msgid "Start Camera"
+msgstr "شروع دوربین"
+
+#: .\authentication\templates\authentication\verify.html:19
+#: .\templates\verification\challenge.html:32
+msgid "Record"
+msgstr "ضبط"
+
+#: .\authentication\templates\authentication\verify.html:20
+#: .\dashboard\templates\dashboard\voice_to_text.html:39
+msgid "Stop"
+msgstr "توقف"
+
+#: .\authentication\templates\authentication\verify.html:27
+msgid "Record Again"
+msgstr "ضبط مجدد"
+
+#: .\authentication\templates\authentication\verify.html:38
+msgid "Upload and Verify"
+msgstr "آپلود و تأیید"
+
+#: ⁨.\authentication\views copy.py⁩:95 .\authentication\views.py:87
+msgid "Verification already in progress."
+msgstr "تأیید در حال انجام است."
+
+#: ⁨.\authentication\views copy.py⁩:100 .\authentication\views.py:93
+msgid "Please record and upload a video."
+msgstr "لطفاً یک ویدیو ضبط و آپلود کنید."
+
+#: ⁨.\authentication\views copy.py⁩:104 .\authentication\views.py:96
+msgid "Video too large (max 20 MB)."
+msgstr "ویدیو خیلی بزرگ است (حداکثر ۲۰ مگابایت)."
+
+#: ⁨.\authentication\views copy.py⁩:108 .\authentication\views.py:99
+msgid "Invalid file type. Expected a video."
+msgstr "نوع فایل نامعتبر است. انتظار یک ویدیو می‌رود."
+
+#: ⁨.\authentication\views copy.py⁩:116 .\authentication\views.py:110
+msgid "Not enough frames could be extracted from the video."
+msgstr "تعداد فریم‌های کافی از ویدیو استخراج نشد."
+
+#: ⁨.\authentication\views copy.py⁩:146 .\authentication\views.py:164
+msgid "Face does not match the registered identity."
+msgstr "چهره با هویت ثبت‌شده مطابقت ندارد."
+
+#: ⁨.\authentication\views copy.py⁩:150 .\authentication\views.py:170
+msgid "Liveness check failed. Please record a fresh video."
+msgstr "بررسی زنده بودن ناموفق بود. لطفاً ویدیوی جدیدی ضبط کنید."
+
+#: ⁨.\authentication\views copy.py⁩:159 .\authentication\views.py:183
+msgid "Verification passed. OTP sent to your email."
+msgstr "تأیید موفق بود. OTP به ایمیل شما ارسال شد."
+
+#: ⁨.\authentication\views copy.py⁩:284 .\authentication\views.py:301
+msgid "Identity verified. Dashboard access granted for 7 days."
+msgstr "هویت تأیید شد. دسترسی به داشبورد برای ۷ روز اعطا شد."
+
+#: .\authentication\views.py:161
+msgid "No face could be processed in the uploaded video."
+msgstr "هیچ چهره‌ای در ویدیوی آپلود شده پردازش نشد."
+
+#: .\dashboard\admin.py:62
+msgid "Approve selected poems"
+msgstr "تأیید شعرهای انتخاب‌شده"
+
+#: .\dashboard\admin.py:68
+msgid "Selected poems approved."
+msgstr "شعرهای انتخاب‌شده تأیید شدند."
+
+#: .\dashboard\admin.py:70
+msgid "Reject selected poems"
+msgstr "رد شعرهای انتخاب‌شده"
+
+#: .\dashboard\admin.py:76
+msgid "Selected poems rejected."
+msgstr "شعرهای انتخاب‌شده رد شدند."
+
+#: .\dashboard\admin.py:125 .\dashboard\admin.py:303
+msgid "Quick actions"
+msgstr "اقدامات سریع"
+
+#: .\dashboard\admin.py:146 .\dashboard\admin.py:159
+msgid "Request is not pending."
+msgstr "درخواست در وضعیت انتظار نیست."
+
+#: .\dashboard\admin.py:153 .\dashboard\admin.py:181
+#, python-format
+msgid "Request approved and email sent to %s."
+msgstr "درخواست تأیید شد و ایمیل به %s ارسال شد."
+
+#: .\dashboard\admin.py:166 .\dashboard\admin.py:188
+#, python-format
+msgid "Request rejected and email sent to %s."
+msgstr "درخواست رد شد و ایمیل به %s ارسال شد."
+
+#: .\dashboard\admin.py:191
+msgid "Approve selected requests (email will be sent)"
+msgstr "تأیید درخواست‌های انتخاب‌شده (ایمیل ارسال خواهد شد)"
+
+#: .\dashboard\admin.py:196 .\dashboard\admin.py:219
+msgid "No pending requests selected."
+msgstr "هیچ درخواست در انتظاری انتخاب نشده است."
+
+#: .\dashboard\admin.py:210
+#, python-format
+msgid "%d request(s) approved and email sent."
+msgstr "%d درخواست تأیید و ایمیل ارسال شد."
+
+#: .\dashboard\admin.py:212 .\dashboard\admin.py:235 .\dashboard\admin.py:380
+#: .\dashboard\admin.py:401
+#, python-format
+msgid "Email errors: %s"
+msgstr "خطاهای ایمیل: %s"
+
+#: .\dashboard\admin.py:214
+msgid "Reject selected requests (email will be sent)"
+msgstr "رد درخواست‌های انتخاب‌شده (ایمیل ارسال خواهد شد)"
+
+#: .\dashboard\admin.py:233
+#, python-format
+msgid "%d request(s) rejected and email sent."
+msgstr "%d درخواست رد و ایمیل ارسال شد."
+
+#: .\dashboard\admin.py:237
+msgid "Reset selected requests (allow re-request)"
+msgstr "بازنشانی درخواست‌های انتخاب‌شده (اجازه درخواست مجدد)"
+
+#: .\dashboard\admin.py:252
+msgid "Selected requests have been reset."
+msgstr "درخواست‌های انتخاب‌شده بازنشانی شدند."
+
+#: .\dashboard\admin.py:282
+msgid "Photo"
+msgstr "عکس"
+
+#: .\dashboard\admin.py:291
+msgid "Video"
+msgstr "ویدیو"
+
+#: .\dashboard\admin.py:324 .\dashboard\admin.py:335
+msgid "Registration is not pending verification."
+msgstr "ثبت‌نام در انتظار تأیید نیست."
+
+#: .\dashboard\admin.py:329 .\dashboard\admin.py:353
+#, python-format
+msgid "Registration approved and email sent to %s."
+msgstr "ثبت‌نام تأیید شد و ایمیل به %s ارسال شد."
+
+#: .\dashboard\admin.py:340 .\dashboard\admin.py:358
+#, python-format
+msgid "Registration rejected and email sent to %s."
+msgstr "ثبت‌نام رد شد و ایمیل به %s ارسال شد."
+
+#: .\dashboard\admin.py:361
+msgid "Approve registrations (email will be sent)"
+msgstr "تأیید ثبت‌نام‌ها (ایمیل ارسال خواهد شد)"
+
+#: .\dashboard\admin.py:366 .\dashboard\admin.py:387
+msgid "No pending registrations selected."
+msgstr "هیچ ثبت‌نام در انتظاری انتخاب نشده است."
+
+#: .\dashboard\admin.py:378
+#, python-format
+msgid "%d registration(s) approved."
+msgstr "%d ثبت‌نام تأیید شد."
+
+#: .\dashboard\admin.py:382
+msgid "Reject registrations (email will be sent)"
+msgstr "رد ثبت‌نام‌ها (ایمیل ارسال خواهد شد)"
+
+#: .\dashboard\admin.py:399
+#, python-format
+msgid "%d registration(s) rejected."
+msgstr "%d ثبت‌نام رد شد."
+
+#: .\dashboard\apps.py:9 .\dashboard\templates\dashboard\base.html:8
+#: .\dashboard\templates\dashboard\partials\navbar.html:9
+#: .\dashboard\templates\dashboard\partials\sidebar.html:5
+#: .\dashboard\views\dashboard.py:57 .\templates\base.html:62
+msgid "Dashboard"
+msgstr "داشبورد"
+
+#: .\dashboard\email_service.py:63
+msgid "Complete Your Content Manager Registration"
+msgstr "ثبت‌نام مدیریت محتوا را تکمیل کنید"
+
+#: .\dashboard\email_service.py:85
+msgid "Your Access Request Has Been Declined"
+msgstr "درخواست دسترسی شما رد شده است"
+
+#: .\dashboard\email_service.py:113
+msgid "Your Content Manager Account Is Now Active"
+msgstr "حساب مدیریت محتوای شما اکنون فعال است"
+
+#: .\dashboard\email_service.py:139
+msgid "Your Registration Has Been Declined"
+msgstr "ثبت‌نام شما رد شده است"
+
+#: .\dashboard\email_service.py:176
+msgid "New Content Manager Registration Pending Review"
+msgstr "ثبت‌نام جدید مدیریت محتوا در انتظار بررسی"
+
+#: .\dashboard\forms.py:30
+msgid "Poem name cannot be empty."
+msgstr "نام شعر نمی‌تواند خالی باشد."
+
+#: .\dashboard\forms.py:36
+msgid "Poem text cannot be empty."
+msgstr "متن شعر نمی‌تواند خالی باشد."
+
+#: .\dashboard\forms.py:45
+msgid "Supported formats: MP3, WAV, OGG, etc."
+msgstr "فرمت‌های پشتیبانی‌شده: MP3، WAV، OGG و غیره."
+
+#: .\dashboard\forms.py:55
+#, python-format
+msgid "Unsupported file type. Allowed: %(extensions)s."
+msgstr "نوع فایل پشتیبانی نمی‌شود. مجاز: %(extensions)s."
+
+#: .\dashboard\forms.py:59
+msgid "File size must be under 20 MB."
+msgstr "حجم فایل باید کمتر از ۲۰ مگابایت باشد."
+
+#: .\dashboard\forms.py:83
+msgid "An account with this email already exists."
+msgstr "حسابی با این ایمیل از قبل وجود دارد."
+
+#: .\dashboard\forms.py:85
+msgid "A pending request already exists for this email."
+msgstr "یک درخواست در انتظار از قبل برای این ایمیل وجود دارد."
+
+#: .\dashboard\forms.py:106
+msgid "Confirm Password"
+msgstr "تأیید رمز عبور"
+
+#: .\dashboard\forms.py:114 .\dashboard\models.py:132
+msgid "Phone Number"
+msgstr "شماره تلفن"
+
+#: .\dashboard\models.py:14
+msgid "Manageable Poem"
+msgstr "شعر قابل مدیریت"
+
+#: .\dashboard\models.py:15
+msgid "Manageable Poems"
+msgstr "شعرهای قابل مدیریت"
+
+#: .\dashboard\models.py:17
+msgid "Can manage poems and audio content"
+msgstr "می‌تواند شعرها و محتوای صوتی را مدیریت کند"
+
+#: .\dashboard\models.py:27
+msgid "Edited"
+msgstr "ویرایش شده"
+
+#: .\dashboard\models.py:28
+msgid "Audio replaced"
+msgstr "صوت جایگزین شد"
+
+#: .\dashboard\models.py:29
+msgid "Audio deleted"
+msgstr "صوت حذف شد"
+
+#: .\dashboard\models.py:30
+msgid "Returned to review"
+msgstr "بازگشت به بررسی"
+
+#: .\dashboard\models.py:35 .\dashboard\templates\dashboard\index.html:77
+msgid "Manager"
+msgstr "مدیر"
+
+#: .\dashboard\models.py:41 .\dashboard\templates\dashboard\index.html:78
+msgid "Poem"
+msgstr "شعر"
+
+#: .\dashboard\models.py:46 .\dashboard\templates\dashboard\index.html:79
+msgid "Action"
+msgstr "عملیات"
+
+#: .\dashboard\models.py:54
+msgid "Description"
+msgstr "توضیحات"
+
+#: .\dashboard\models.py:58
+msgid "Activity log"
+msgstr "گزارش فعالیت"
+
+#: .\dashboard\models.py:59
+msgid "Activity logs"
+msgstr "گزارش‌های فعالیت"
+
+#: .\dashboard\models.py:71
+msgid "Message"
+msgstr "پیام"
+
+#: .\dashboard\models.py:89
+msgid "Registration Request"
+msgstr "درخواست ثبت‌نام"
+
+#: .\dashboard\models.py:90
+msgid "Registration Requests"
+msgstr "درخواست‌های ثبت‌نام"
+
+#: .\dashboard\models.py:128
+msgid "Initial Request"
+msgstr "درخواست اولیه"
+
+#: .\dashboard\models.py:133
+msgid "Live Photo"
+msgstr "عکس زنده"
+
+#: .\dashboard\models.py:138
+msgid "Pending Verification"
+msgstr "در انتظار تأیید"
+
+#: .\dashboard\models.py:148 .\dashboard\templates\dashboard\register.html:44
+msgid "Content Manager Registration"
+msgstr "ثبت‌نام مدیریت محتوا"
+
+#: .\dashboard\models.py:149
+msgid "Content Manager Registrations"
+msgstr "ثبت‌نام‌های مدیریت محتوا"
+
+#: .\dashboard\models.py:160
+msgid "Access Request Created"
+msgstr "درخواست دسترسی ایجاد شد"
+
+#: .\dashboard\models.py:161
+msgid "Registration Started"
+msgstr "ثبت‌نام شروع شد"
+
+#: .\dashboard\models.py:162
+msgid "Basic Info Submitted"
+msgstr "اطلاعات پایه ارسال شد"
+
+#: .\dashboard\models.py:163
+msgid "Photo Captured"
+msgstr "عکس گرفته شد"
+
+#: .\dashboard\models.py:164
+msgid "Video Recorded"
+msgstr "ویدیو ضبط شد"
+
+#: .\dashboard\models.py:165
+msgid "Registration Completed"
+msgstr "ثبت‌نام تکمیل شد"
+
+#: .\dashboard\models.py:166
+msgid "Admin Notification Sent"
+msgstr "اطلاع‌رسانی به ادمین ارسال شد"
+
+#: .\dashboard\models.py:167
+msgid "Approval"
+msgstr "تأیید"
+
+#: .\dashboard\models.py:168
+msgid "Rejection"
+msgstr "رد"
+
+#: .\dashboard\models.py:169
+msgid "Token Created"
+msgstr "توکن ایجاد شد"
+
+#: .\dashboard\models.py:170
+msgid "Token Opened"
+msgstr "توکن باز شد"
+
+#: .\dashboard\models.py:171
+msgid "Token Expired"
+msgstr "توکن منقضی شد"
+
+#: .\dashboard\models.py:172
+msgid "Invalid Token"
+msgstr "توکن نامعتبر"
+
+#: .\dashboard\models.py:173
+msgid "Reused Token"
+msgstr "توکن استفاده‌شده مجدد"
+
+#: .\dashboard\models.py:174
+msgid "Dashboard Request Opened"
+msgstr "درخواست داشبورد باز شد"
+
+#: .\dashboard\models.py:175
+msgid "Dashboard Request Submitted"
+msgstr "درخواست داشبورد ارسال شد"
+
+#: .\dashboard\models.py:176
+msgid "Dashboard Request Blocked"
+msgstr "درخواست داشبورد مسدود شد"
+
+#: .\dashboard\models.py:177
+msgid "Dashboard Request Approved"
+msgstr "درخواست داشبورد تأیید شد"
+
+#: .\dashboard\models.py:178
+msgid "Dashboard Request Rejected"
+msgstr "درخواست داشبورد رد شد"
+
+#: .\dashboard\models.py:179
+msgid "Dashboard Request Reset"
+msgstr "درخواست داشبورد بازنشانی شد"
+
+#: .\dashboard\models.py:180
+msgid "Email Changed"
+msgstr "ایمیل تغییر کرد"
+
+#: .\dashboard\models.py:188
+msgid "Registration"
+msgstr "ثبت‌نام"
+
+#: .\dashboard\models.py:196
+msgid "Request"
+msgstr "درخواست"
+
+#: .\dashboard\models.py:201
+msgid "Event"
+msgstr "رویداد"
+
+#: .\dashboard\models.py:204
+msgid "Detail"
+msgstr "جزئیات"
+
+#: .\dashboard\models.py:209
+msgid "Registration Log"
+msgstr "گزارش ثبت‌نام"
+
+#: .\dashboard\models.py:210
+msgid "Registration Logs"
+msgstr "گزارش‌های ثبت‌نام"
+
+#: .\dashboard\models.py:219
+msgid "Login Success"
+msgstr "ورود موفق"
+
+#: .\dashboard\models.py:220
+msgid "Login Failed"
+msgstr "ورود ناموفق"
+
+#: .\dashboard\models.py:221
+#: .\dashboard\templates\dashboard\partials\navbar.html:20
+#: .\templates\accounts\logout.html:4 .\templates\accounts\logout.html:8
+#: .\templates\accounts\logout.html:10 .\templates\accounts\profile.html:44
+#: .\templates\base.html:90
+msgid "Logout"
+msgstr "خروج"
+
+#: .\dashboard\models.py:237
+msgid "Login Audit Log"
+msgstr "گزارش ممیزی ورود"
+
+#: .\dashboard\models.py:238
+msgid "Login Audit Logs"
+msgstr "گزارش‌های ممیزی ورود"
+
+#: .\dashboard\models.py:251
+msgid "Login Attempt"
+msgstr "تلاش ورود"
+
+#: .\dashboard\models.py:252
+msgid "Login Attempts"
+msgstr "تلاش‌های ورود"
+
+#: ⁨.\dashboard\services copy.py⁩:51 .\dashboard\services.py:47
+msgid "This poem cannot be approved from its current status."
+msgstr "این شعر از وضعیت فعلی قابل تأیید نیست."
+
+#: ⁨.\dashboard\services copy.py⁩:59 .\dashboard\services.py:55
+msgid "Poem is already rejected."
+msgstr "شعر از قبل رد شده است."
+
+#: ⁨.\dashboard\services copy.py⁩:99 .\dashboard\services.py:95
+msgid "No audio file to delete."
+msgstr "فایل صوتی برای حذف وجود ندارد."
+
+#: ⁨.\dashboard\services copy.py⁩:108 .\dashboard\services.py:104
+msgid "Only rejected poems can be returned to review."
+msgstr "فقط شعرهای رد شده می‌توانند به بررسی بازگردند."
+
+#: ⁨.\dashboard\services copy.py⁩:175 .\dashboard\services.py:171
+msgid "A pending registration already exists with this phone number."
+msgstr "یک ثبت‌نام در انتظار با این شماره تلفن از قبل وجود دارد."
+
+#: ⁨.\dashboard\services copy.py⁩:186 ⁨.\dashboard\services copy.py⁩:259
+#: .\dashboard\services.py:182 .\dashboard\services.py:255
+msgid "The existing user account for this registration could not be found."
+msgstr "حساب کاربری موجود برای این ثبت‌نام یافت نشد."
+
+#: ⁨.\dashboard\services copy.py⁩:194 ⁨.\dashboard\services copy.py⁩:308
+#: .\dashboard\services.py:190 .\dashboard\services.py:304
+msgid "Invalid image data."
+msgstr "داده تصویر نامعتبر است."
+
+#: ⁨.\dashboard\services copy.py⁩:199 .\dashboard\services.py:195
+msgid "Exactly one face must be visible in the image."
+msgstr "دقیقاً یک چهره باید در تصویر قابل مشاهده باشد."
+
+#: ⁨.\dashboard\services copy.py⁩:315 .\dashboard\services.py:311
+msgid "Unsupported image format. Use JPEG or PNG."
+msgstr "فرمت تصویر پشتیبانی نمی‌شود. از JPEG یا PNG استفاده کنید."
+
+#: ⁨.\dashboard\services copy.py⁩:319 .\dashboard\services.py:315
+msgid "Photo must be under 5 MB."
+msgstr "عکس باید کمتر از ۵ مگابایت باشد."
+
+#: ⁨.\dashboard\services copy.py⁩:323 .\dashboard\services.py:319
+msgid "Invalid image file."
+msgstr "فایل تصویر نامعتبر است."
+
+#: ⁨.\dashboard\services copy.py⁩:332 .\dashboard\services.py:328
+msgid "Invalid video data."
+msgstr "داده ویدیو نامعتبر است."
+
+#: ⁨.\dashboard\services copy.py⁩:334 .\dashboard\services.py:330
+msgid "Unsupported video format. Use WebM."
+msgstr "فرمت ویدیو پشتیبانی نمی‌شود. از WebM استفاده کنید."
+
+#: ⁨.\dashboard\services copy.py⁩:338 .\dashboard\services.py:334
+msgid "Video must be under 20 MB."
+msgstr "ویدیو باید کمتر از ۲۰ مگابایت باشد."
+
+#: .\dashboard\templates\dashboard\audio_replace.html:4
+#: .\dashboard\templates\dashboard\audio_replace.html:37
+#: .\dashboard\templates\dashboard\poem_detail.html:97
+msgid "Replace Audio"
+msgstr "جایگزینی صوت"
+
+#: .\dashboard\templates\dashboard\audio_replace.html:9
+msgid "Replace Audio for"
+msgstr "جایگزینی صوت برای"
+
+#: .\dashboard\templates\dashboard\audio_replace.html:14
+msgid "Current Audio"
+msgstr "صوت فعلی"
+
+#: .\dashboard\templates\dashboard\audio_replace.html:34
+#: .\dashboard\templates\dashboard\partials\confirm_modal.html:13
+#: .\dashboard\templates\dashboard\poem_edit.html:30
+#: .\templates\accounts\logout.html:11 .\templates\poem_delete.html:14
+#: .\templates\poem_update.html:16
+msgid "Cancel"
+msgstr "لغو"
+
+#: .\dashboard\templates\dashboard\emails\account_approved_email.html:6
+#: .\dashboard\templates\dashboard\emails\account_approved_email.txt.py:1
+#: .\dashboard\templates\dashboard\emails\registration_link_email.html:6
+#: .\dashboard\templates\dashboard\emails\registration_link_email.txt.py:1
+#: .\dashboard\templates\dashboard\emails\registration_rejected_email.html:6
+#: .\dashboard\templates\dashboard\emails\registration_rejected_email.txt.py:1
+#: .\dashboard\templates\dashboard\emails\request_rejected_email.html:6
+#: .\dashboard\templates\dashboard\emails\request_rejected_email.txt.py:1
+#, python-format
+msgid "Dear %(full_name)s,"
+msgstr "%(full_name)s عزیز،"
+
+#: .\dashboard\templates\dashboard\emails\account_approved_email.html:7
+#: .\dashboard\templates\dashboard\emails\account_approved_email.txt.py:3
+msgid "Your registration has been reviewed and approved."
+msgstr "ثبت‌نام شما بررسی و تأیید شده است."
+
+#: .\dashboard\templates\dashboard\emails\account_approved_email.html:8
+#: .\dashboard\templates\dashboard\emails\account_approved_email.txt.py:5
+msgid ""
+"Your content manager account is now active. You may log in using your "
+"username:"
+msgstr ""
+"حساب مدیریت محتوای شما اکنون فعال است. می‌توانید با نام کاربری خود وارد شوید:"
+
+#: .\dashboard\templates\dashboard\emails\account_approved_email.html:9
+msgid "Go to Dashboard"
+msgstr "رفتن به داشبورد"
+
+#: .\dashboard\templates\dashboard\emails\account_approved_email.html:10
+#: .\dashboard\templates\dashboard\emails\account_approved_email.txt.py:9
+msgid "Welcome aboard!"
+msgstr "خوش آمدید!"
+
+#: .\dashboard\templates\dashboard\emails\account_approved_email.txt.py:7
+msgid "Go to Dashboard:"
+msgstr "رفتن به داشبورد:"
+
+#: .\dashboard\templates\dashboard\emails\admin_notification_email.html:6
+#: .\dashboard\templates\dashboard\emails\admin_notification_email.txt.py:1
+msgid "A new content manager registration is pending review."
+msgstr "یک ثبت‌نام جدید مدیریت محتوا در انتظار بررسی است."
+
+#: .\dashboard\templates\dashboard\emails\admin_notification_email.html:8
+#: .\dashboard\templates\dashboard\emails\admin_notification_email.txt.py:3
+msgid "Username:"
+msgstr "نام کاربری:"
+
+#: .\dashboard\templates\dashboard\emails\admin_notification_email.html:9
+#: .\dashboard\templates\dashboard\emails\admin_notification_email.txt.py:4
+msgid "Full Name:"
+msgstr "نام کامل:"
+
+#: .\dashboard\templates\dashboard\emails\admin_notification_email.html:10
+#: .\dashboard\templates\dashboard\emails\admin_notification_email.txt.py:5
+msgid "Phone:"
+msgstr "تلفن:"
+
+#: .\dashboard\templates\dashboard\emails\admin_notification_email.html:11
+#: .\dashboard\templates\dashboard\emails\admin_notification_email.txt.py:6
+msgid "Email:"
+msgstr "ایمیل:"
+
+#: .\dashboard\templates\dashboard\emails\admin_notification_email.html:12
+#: .\dashboard\templates\dashboard\emails\admin_notification_email.txt.py:7
+msgid "Submitted:"
+msgstr "ارسال شده:"
+
+#: .\dashboard\templates\dashboard\emails\admin_notification_email.html:13
+#: .\dashboard\templates\dashboard\emails\admin_notification_email.txt.py:8
+msgid "Status:"
+msgstr "وضعیت:"
+
+#: .\dashboard\templates\dashboard\emails\admin_notification_email.html:15
+msgid "Review Registration"
+msgstr "بررسی ثبت‌نام"
+
+#: .\dashboard\templates\dashboard\emails\admin_notification_email.html:16
+#: .\dashboard\templates\dashboard\emails\admin_notification_email.txt.py:11
+msgid "This link is only accessible to administrators."
+msgstr "این لینک فقط برای مدیران قابل دسترسی است."
+
+#: .\dashboard\templates\dashboard\emails\admin_notification_email.txt.py:10
+msgid "Review Registration:"
+msgstr "بررسی ثبت‌نام:"
+
+#: .\dashboard\templates\dashboard\emails\registration_link_email.html:7
+#: .\dashboard\templates\dashboard\emails\registration_link_email.txt.py:3
+msgid "Your request to become a content manager has been approved."
+msgstr "درخواست شما برای مدیر محتوا شدن تأیید شده است."
+
+#: .\dashboard\templates\dashboard\emails\registration_link_email.html:8
+#: .\dashboard\templates\dashboard\emails\registration_link_email.txt.py:5
+msgid "Please use the following link to complete your registration:"
+msgstr "لطفاً از لینک زیر برای تکمیل ثبت‌نام خود استفاده کنید:"
+
+#: .\dashboard\templates\dashboard\emails\registration_link_email.html:10
+#: .\dashboard\templates\dashboard\emails\registration_link_email.txt.py:8
+msgid "This link is valid for 24 hours and can only be used once."
+msgstr "این لینک به مدت ۲۴ ساعت معتبر است و فقط یک بار قابل استفاده است."
+
+#: .\dashboard\templates\dashboard\emails\registration_link_email.html:11
+#: .\dashboard\templates\dashboard\emails\registration_link_email.txt.py:10
+#: .\dashboard\templates\dashboard\request_success.html:12
+msgid "Thank you!"
+msgstr "متشکریم!"
+
+#: .\dashboard\templates\dashboard\emails\registration_rejected_email.html:7
+#: .\dashboard\templates\dashboard\emails\registration_rejected_email.txt.py:3
+msgid ""
+"After reviewing your submitted information, we have decided not to activate "
+"your content manager account at this time."
+msgstr ""
+"پس از بررسی اطلاعات ارسالی شما، تصمیم گرفتیم در حال حاضر حساب مدیریت محتوای "
+"شما را فعال نکنیم."
+
+#: .\dashboard\templates\dashboard\emails\registration_rejected_email.html:8
+#: .\dashboard\templates\dashboard\emails\registration_rejected_email.txt.py:5
+msgid "You may submit a new access request if circumstances change."
+msgstr "در صورت تغییر شرایط می‌توانید درخواست دسترسی جدیدی ارسال کنید."
+
+#: .\dashboard\templates\dashboard\emails\registration_rejected_email.html:9
+#: .\dashboard\templates\dashboard\emails\registration_rejected_email.txt.py:7
+msgid "Thank you for your understanding."
+msgstr "از درک شما متشکریم."
+
+#: .\dashboard\templates\dashboard\emails\request_rejected_email.html:7
+#: .\dashboard\templates\dashboard\emails\request_rejected_email.txt.py:3
+msgid ""
+"We regret to inform you that your request for content manager access has "
+"been declined."
+msgstr ""
+"متأسفانه به اطلاع می‌رسانیم که درخواست شما برای دسترسی مدیریت محتوا رد شده "
+"است."
+
+#: .\dashboard\templates\dashboard\emails\request_rejected_email.html:8
+#: .\dashboard\templates\dashboard\emails\request_rejected_email.txt.py:5
+msgid ""
+"If you believe this was a mistake, please contact the site administrator."
+msgstr "اگر فکر می‌کنید این یک اشتباه بوده، لطفاً با مدیر سایت تماس بگیرید."
+
+#: .\dashboard\templates\dashboard\emails\request_rejected_email.html:9
+#: .\dashboard\templates\dashboard\emails\request_rejected_email.txt.py:7
+msgid "Thank you for your interest."
+msgstr "از علاقه‌مندی شما متشکریم."
+
+#: .\dashboard\templates\dashboard\index.html:15
+msgid "Total Poems"
+msgstr "کل شعرها"
+
+#: .\dashboard\templates\dashboard\index.html:29
+#: .\dashboard\templates\dashboard\poem_detail.html:17
+#: .\dashboard\templates\dashboard\poem_list.html:55
+msgid "Awaiting"
+msgstr "در انتظار"
+
+#: .\dashboard\templates\dashboard\index.html:70
+msgid "Recent Activity"
+msgstr "فعالیت‌های اخیر"
+
+#: .\dashboard\templates\dashboard\index.html:80
+msgid "Time"
+msgstr "زمان"
+
+#: .\dashboard\templates\dashboard\index.html:100
+msgid "No activity yet."
+msgstr "هنوز فعالیتی ثبت نشده است."
+
+#: .\dashboard\templates\dashboard\partials\confirm_modal.html:6
+msgid "Confirm Action"
+msgstr "تأیید عملیات"
+
+#: .\dashboard\templates\dashboard\partials\confirm_modal.html:10
+#: .\dashboard\templates\dashboard\poem_detail.html:104
+msgid "Are you sure?"
+msgstr "آیا مطمئن هستید؟"
+
+#: .\dashboard\templates\dashboard\partials\confirm_modal.html:14
+msgid "Yes"
+msgstr "بله"
+
+#: .\dashboard\templates\dashboard\partials\messages.html:10
+#: .\dashboard\templates\dashboard\partials\messages.html:16
+#: .\dashboard\templates\dashboard\partials\messages.html:21
+#: .\dashboard\templates\dashboard\partials\messages.html:26
+#: .\dashboard\templates\dashboard\partials\messages.html:31
+msgid "Close"
+msgstr "بستن"
+
+#: .\dashboard\templates\dashboard\partials\navbar.html:14
+msgid "Welcome"
+msgstr "خوش آمدید"
+
+#: .\dashboard\templates\dashboard\partials\pagination.html:3
+#: .\templates\partials\pagination.html:3
+msgid "Page navigation"
+msgstr "ناوبری صفحه"
+
+#: .\dashboard\templates\dashboard\partials\pagination.html:7
+#: .\dashboard\templates\dashboard\register.html:97
+#: .\dashboard\templates\dashboard\register.html:134
+msgid "Previous"
+msgstr "قبلی"
+
+#: .\dashboard\templates\dashboard\partials\pagination.html:31
+#: .\dashboard\templates\dashboard\register.html:72
+#: .\dashboard\templates\dashboard\register.html:98
+msgid "Next"
+msgstr "بعدی"
+
+#: .\dashboard\templates\dashboard\partials\sidebar.html:16
+msgid "Overview"
+msgstr "نمای کلی"
+
+#: .\dashboard\templates\dashboard\partials\sidebar.html:23
+msgid "Poems"
+msgstr "شعرها"
+
+#: .\dashboard\templates\dashboard\partials\sidebar.html:30
+msgid "Toggle theme"
+msgstr "تغییر تم"
+
+#: .\dashboard\templates\dashboard\partials\sidebar.html:31
+msgid "Toggle Theme"
+msgstr "تغییر تم"
+
+#: .\dashboard\templates\dashboard\partials\sidebar.html:34
+msgid "Back to Site"
+msgstr "بازگشت به سایت"
+
+#: .\dashboard\templates\dashboard\poem_detail.html:42
+#: .\dashboard\templates\dashboard\poem_list.html:18
+#: .\templates\detail-poem.html:99 .\templates\index.html:58
+msgid "Created"
+msgstr "ایجاد شده"
+
+#: .\dashboard\templates\dashboard\poem_detail.html:47
+#: .\templates\index.html:59
+msgid "Last Edited"
+msgstr "آخرین ویرایش"
+
+#: .\dashboard\templates\dashboard\poem_detail.html:79
+msgid "Audio"
+msgstr "صوت"
+
+#: .\dashboard\templates\dashboard\poem_detail.html:88
+msgid "Your browser does not support the audio element."
+msgstr "مرورگر شما از عنصر صوتی پشتیبانی نمی‌کند."
+
+#: .\dashboard\templates\dashboard\poem_detail.html:113
+msgid "Delete Audio"
+msgstr "حذف صوت"
+
+#: .\dashboard\templates\dashboard\poem_detail.html:120
+msgid "No audio file."
+msgstr "فایل صوتی وجود ندارد."
+
+#: .\dashboard\templates\dashboard\poem_detail.html:128
+msgid "Upload Audio"
+msgstr "آپلود صوت"
+
+#: .\dashboard\templates\dashboard\poem_detail.html:140
+msgid "Edit"
+msgstr "ویرایش"
+
+#: .\dashboard\templates\dashboard\poem_detail.html:156
+#: .\dashboard\templates\dashboard\poem_review_queue.html:55
+msgid "Approve"
+msgstr "تأیید"
+
+#: .\dashboard\templates\dashboard\poem_detail.html:174
+#: .\dashboard\templates\dashboard\poem_review_queue.html:65
+msgid "Reject"
+msgstr "رد"
+
+#: .\dashboard\templates\dashboard\poem_detail.html:184
+msgid "Return this rejected poem to the review queue?"
+msgstr "این شعر رد شده را به صف بررسی بازگردانیم؟"
+
+#: .\dashboard\templates\dashboard\poem_detail.html:193
+msgid "Return to Review"
+msgstr "بازگشت به بررسی"
+
+#: .\dashboard\templates\dashboard\poem_detail.html:202
+msgid "Permanently delete this poem?"
+msgstr "این شعر را برای همیشه حذف کنیم؟"
+
+#: .\dashboard\templates\dashboard\poem_detail.html:211
+#: .\templates\poem_delete.html:4 .\templates\poem_delete.html:9
+msgid "Delete Poem"
+msgstr "حذف شعر"
+
+#: .\dashboard\templates\dashboard\poem_detail.html:222
+msgid "Activity Log"
+msgstr "گزارش فعالیت"
+
+#: .\dashboard\templates\dashboard\poem_detail.html:256
+msgid "No activity recorded."
+msgstr "فعالیتی ثبت نشده است."
+
+#: .\dashboard\templates\dashboard\poem_edit.html:4
+#: .\dashboard\templates\dashboard\poem_edit.html:9
+msgid "Edit Poem"
+msgstr "ویرایش شعر"
+
+#: .\dashboard\templates\dashboard\poem_edit.html:33
+#: .\templates\accounts\profile.html:43 .\templates\poem_update.html:15
+msgid "Save Changes"
+msgstr "ذخیره تغییرات"
+
+#: .\dashboard\templates\dashboard\poem_list.html:13
+#: .\dashboard\templates\dashboard\poem_review_queue.html:22
+msgid "ID"
+msgstr "شناسه"
+
+#: .\dashboard\templates\dashboard\poem_list.html:14
+#: .\dashboard\templates\dashboard\poem_review_queue.html:23
+msgid "Name"
+msgstr "نام"
+
+#: .\dashboard\templates\dashboard\poem_list.html:19
+#: .\dashboard\templates\dashboard\poem_review_queue.html:27
+msgid "Actions"
+msgstr "عملیات"
+
+#: .\dashboard\templates\dashboard\poem_review_queue.html:10
+msgid "Review Queue"
+msgstr "صف بررسی"
+
+#: .\dashboard\templates\dashboard\poem_review_queue.html:25
+msgid "Submitted"
+msgstr "ارسال شده"
+
+#: .\dashboard\templates\dashboard\poem_review_queue.html:26
+msgid "Waiting"
+msgstr "در انتظار"
+
+#: .\dashboard\templates\dashboard\poem_review_queue.html:46
+msgid "Review"
+msgstr "بررسی"
+
+#: .\dashboard\templates\dashboard\poem_review_queue.html:79
+msgid "Invalid date"
+msgstr "تاریخ نامعتبر"
+
+#: .\dashboard\templates\dashboard\poem_review_queue.html:88
+msgid "No poems are waiting for review."
+msgstr "شعری در انتظار بررسی نیست."
+
+#: .\dashboard\templates\dashboard\poem_review_queue.html:93
+#: .\templates\recent.html:104
+msgid "Clear Filters"
+msgstr "پاک کردن فیلترها"
+
+#: .\dashboard\templates\dashboard\register.html:7
+msgid "Complete Registration"
+msgstr "تکمیل ثبت‌نام"
+
+#: .\dashboard\templates\dashboard\register.html:49
+msgid "Step 1 of 3"
+msgstr "مرحله ۱ از ۳"
+
+#: .\dashboard\templates\dashboard\register.html:62
+msgid "Step 1: Basic Information"
+msgstr "مرحله ۱: اطلاعات پایه"
+
+#: .\dashboard\templates\dashboard\register.html:81
+msgid "Step 2: Face Photo"
+msgstr "مرحله ۲: عکس چهره"
+
+#: .\dashboard\templates\dashboard\register.html:82
+msgid "Center your face inside the frame."
+msgstr "چهره خود را داخل کادر قرار دهید."
+
+#: .\dashboard\templates\dashboard\register.html:86
+#: .\templates\accounts\login_verification.html:30
+msgid "Align your face here"
+msgstr "چهره خود را اینجا تراز کنید"
+
+#: .\dashboard\templates\dashboard\register.html:92
+msgid "Capture"
+msgstr "گرفتن عکس"
+
+#: .\dashboard\templates\dashboard\register.html:93
+#: .\templates\verification\camera.html:26
+msgid "Retake"
+msgstr "گرفتن مجدد"
+
+#: .\dashboard\templates\dashboard\register.html:108
+msgid "Step 3: Video Verification"
+msgstr "مرحله ۳: تأیید ویدیویی"
+
+#: .\dashboard\templates\dashboard\register.html:109
+msgid "Keep your face centered inside the frame and read the sentence aloud."
+msgstr "چهره خود را در مرکز کادر نگه دارید و جمله را با صدای بلند بخوانید."
+
+#: .\dashboard\templates\dashboard\register.html:114
+msgid "Read the sentence aloud"
+msgstr "جمله را با صدای بلند بخوانید"
+
+#: .\dashboard\templates\dashboard\register.html:116
+msgid "Please read:"
+msgstr "لطفاً بخوانید:"
+
+#: .\dashboard\templates\dashboard\register.html:116
+msgid "I, "
+msgstr "من، "
+
+#: .\dashboard\templates\dashboard\register.html:116
+msgid ""
+"am requesting approval to become the manager of this section of the website."
+msgstr "درخواست تأیید برای مدیر این بخش از وب‌سایت شدن را دارم."
+
+#: .\dashboard\templates\dashboard\register.html:119
+#: .\dashboard\templates\dashboard\voice_to_text.html:35
+#: .\templates\accounts\login_verification.html:50
+msgid "Start Recording"
+msgstr "شروع ضبط"
+
+#: .\dashboard\templates\dashboard\register.html:127
+#: .\templates\accounts\login_verification.html:58
+msgid "✅ Use This Video"
+msgstr "✅ استفاده از این ویدیو"
+
+#: .\dashboard\templates\dashboard\register.html:128
+#: .\templates\accounts\login_verification.html:59
+msgid "🔄 Record Again"
+msgstr "🔄 ضبط مجدد"
+
+#: .\dashboard\templates\dashboard\register.html:135
+msgid "Submit Registration"
+msgstr "ارسال ثبت‌نام"
+
+#: .\dashboard\templates\dashboard\register.html:164
+msgid "Step"
+msgstr "مرحله"
+
+#: .\dashboard\templates\dashboard\register.html:164
+msgid "of 3"
+msgstr "از ۳"
+
+#: .\dashboard\templates\dashboard\register.html:176
+msgid "Please fill in all fields."
+msgstr "لطفاً تمام فیلدها را پر کنید."
+
+#: .\dashboard\templates\dashboard\register.html:185
+msgid "Please capture a photo."
+msgstr "لطفاً یک عکس بگیرید."
+
+#: .\dashboard\templates\dashboard\register.html:219
+#: .\dashboard\templates\dashboard\register.html:312
+#: .\templates\accounts\login_verification.html:150
+#: .\templates\verification\camera.html:59
+msgid "Camera access denied."
+msgstr "دسترسی به دوربین رد شد."
+
+#: .\dashboard\templates\dashboard\register.html:236
+#: .\templates\accounts\login_verification.html:167
+#: .\templates\verification\camera.html:75
+msgid "Photo captured."
+msgstr "عکس گرفته شد."
+
+#: .\dashboard\templates\dashboard\register.html:284
+#: .\templates\accounts\login_verification.html:134
+msgid "Recording complete. Review your video."
+msgstr "ضبط کامل شد. ویدیوی خود را بررسی کنید."
+
+#: .\dashboard\templates\dashboard\register.html:342
+#: .\templates\accounts\login_verification.html:224
+msgid "Video accepted."
+msgstr "ویدیو پذیرفته شد."
+
+#: .\dashboard\templates\dashboard\register_success.html:7
+msgid "Registration Submitted"
+msgstr "ثبت‌نام ارسال شد"
+
+#: .\dashboard\templates\dashboard\register_success.html:12
+msgid "Verification Pending"
+msgstr "تأیید در انتظار"
+
+#: .\dashboard\templates\dashboard\register_success.html:13
+msgid ""
+"Your registration has been submitted for administrator review. You will be "
+"notified once your account is activated."
+msgstr ""
+"ثبت‌نام شما برای بررسی مدیر ارسال شده است. پس از فعال شدن حساب به شما اطلاع "
+"داده خواهد شد."
+
+#: .\dashboard\templates\dashboard\request_access.html:7
+msgid "Request Access"
+msgstr "درخواست دسترسی"
+
+#: .\dashboard\templates\dashboard\request_access.html:16
+msgid "Request Content Manager Access"
+msgstr "درخواست دسترسی مدیریت محتوا"
+
+#: .\dashboard\templates\dashboard\request_access.html:28
+#: .\templates\accounts\dashboard_request.html:24
+#: .\templates\dashboard\request_access.html:24
+msgid "Submit Request"
+msgstr "ارسال درخواست"
+
+#: .\dashboard\templates\dashboard\request_success.html:7
+msgid "Request Submitted"
+msgstr "درخواست ارسال شد"
+
+#: .\dashboard\templates\dashboard\request_success.html:13
+msgid ""
+"Your request has been submitted for review. If approved, you will receive "
+"further instructions."
+msgstr ""
+"درخواست شما برای بررسی ارسال شده است. در صورت تأیید، دستورالعمل‌های بیشتری "
+"دریافت خواهید کرد."
+
+#: .\dashboard\templates\dashboard\voice_to_text.html:14
+#: .\dashboard\views\tools.py:13
+msgid "Voice to Text"
+msgstr "صوت به متن"
+
+#: .\dashboard\templates\dashboard\voice_to_text.html:19
+msgid "Copy Text"
+msgstr "کپی متن"
+
+#: .\dashboard\templates\dashboard\voice_to_text.html:43
+msgid "Clear"
+msgstr "پاک کردن"
+
+#: .\dashboard\views\audio.py:22
+msgid "Audio replaced successfully."
+msgstr "صوت با موفقیت جایگزین شد."
+
+#: .\dashboard\views\audio.py:51
+msgid "Audio deleted."
+msgstr "صوت حذف شد."
+
+#: .\dashboard\views\poems.py:52
+msgid "Poem Management"
+msgstr "مدیریت شعر"
+
+#: .\dashboard\views\poems.py:81
+msgid "Poem updated successfully."
+msgstr "شعر با موفقیت به‌روزرسانی شد."
+
+#: .\dashboard\views\poems.py:109
+msgid "Poem approved successfully."
+msgstr "شعر با موفقیت تأیید شد."
+
+#: .\dashboard\views\poems.py:124
+msgid "Poem rejected."
+msgstr "شعر رد شد."
+
+#: .\dashboard\views\poems.py:137
+msgid "Poem deleted."
+msgstr "شعر حذف شد."
+
+#: .\dashboard\views\poems.py:158
+msgid "Poem returned to the review queue."
+msgstr "شعر به صف بررسی بازگردانده شد."
+
+#: .\dashboard\views\poems.py:164
+msgid "Nothing to restore for this poem."
+msgstr "چیزی برای بازیابی این شعر وجود ندارد."
+
+#: .\dashboard\views\registration.py:275
+msgid "Photo and video are required."
+msgstr "عکس و ویدیو الزامی هستند."
+
+#: .\dashboard\views\registration.py:295
+msgid "Video file is too large."
+msgstr "فایل ویدیو خیلی بزرگ است."
+
+#: .\dashboard\views\registration.py:329
+msgid "Registration submitted for verification."
+msgstr "ثبت‌نام برای تأیید ارسال شد."
+
+#: .\templates\404.html:4 .\templates\404.html:10
+msgid "Page Not Found"
+msgstr "صفحه یافت نشد"
+
+#: .\templates\404.html:13
+msgid "The page you are looking for does not exist."
+msgstr "صفحه‌ای که به دنبال آن هستید وجود ندارد."
+
+#: .\templates\404.html:17
+msgid "Return Home"
+msgstr "بازگشت به صفحه اصلی"
+
+#: .\templates\accounts\dashboard_request.html:4
+#: .\templates\dashboard\request_access.html:4
+msgid "Request Dashboard Access"
+msgstr "درخواست دسترسی داشبورد"
+
+#: .\templates\accounts\dashboard_request.html:12
+#: .\templates\dashboard\request_access.html:12
+msgid "Request Content Manager Dashboard Access"
+msgstr "درخواست دسترسی داشبورد مدیریت محتوا"
+
+#: .\templates\accounts\forgot_password.html:4
+msgid "Forgot Password"
+msgstr "فراموشی رمز عبور"
+
+#: .\templates\accounts\forgot_password.html:12
+msgid "Reset Your Password"
+msgstr "بازنشانی رمز عبور"
+
+#: .\templates\accounts\forgot_password.html:13
+msgid ""
+"Enter your email address and we'll send you a link to reset your password."
+msgstr ""
+"آدرس ایمیل خود را وارد کنید تا لینک بازنشانی رمز عبور را برای شما ارسال کنیم."
+
+#: .\templates\accounts\forgot_password.html:23
+msgid "Send Reset Link"
+msgstr "ارسال لینک بازنشانی"
+
+#: .\templates\accounts\login.html:5 .\templates\accounts\login.html:72
+#: .\templates\base.html:96
+msgid "Login"
+msgstr "ورود"
+
+#: .\templates\accounts\login.html:13
+msgid "Login to Your Account"
+msgstr "ورود به حساب کاربری"
+
+#: .\templates\accounts\login.html:80
+msgid "Forgot Password?"
+msgstr "رمز عبور را فراموش کرده‌اید؟"
+
+#: .\templates\accounts\login.html:84
+msgid "Don't have an account?"
+msgstr "حساب کاربری ندارید؟"
+
+#: .\templates\accounts\login.html:90 .\templates\accounts\signup.html:4
+#: .\templates\accounts\signup.html:11 .\templates\base.html:102
+msgid "Sign Up"
+msgstr "ثبت‌نام"
+
+#: .\templates\accounts\login_verification.html:4
+#: .\templates\accounts\login_verification.html:10
+msgid "Identity Verification"
+msgstr "تأیید هویت"
+
+#: .\templates\accounts\login_verification.html:11
+msgid "Complete both steps to verify your identity."
+msgstr "هر دو مرحله را برای تأیید هویت خود تکمیل کنید."
+
+#: .\templates\accounts\login_verification.html:15
+msgid "I,"
+msgstr "من،"
+
+#: .\templates\accounts\login_verification.html:15
+msgid "wish to log in."
+msgstr "می‌خواهم وارد شوم."
+
+#: .\templates\accounts\login_verification.html:26
+msgid "Step 1: Capture Face Photo"
+msgstr "مرحله ۱: گرفتن عکس چهره"
+
+#: .\templates\accounts\login_verification.html:37
+#: .\templates\verification\camera.html:25
+msgid "Capture Photo"
+msgstr "گرفتن عکس"
+
+#: .\templates\accounts\login_verification.html:38
+msgid "Retake Photo"
+msgstr "گرفتن مجدد عکس"
+
+#: .\templates\accounts\login_verification.html:45
+msgid "Step 2: Record 5-Second Video"
+msgstr "مرحله ۲: ضبط ویدیوی ۵ ثانیه‌ای"
+
+#: .\templates\accounts\login_verification.html:46
+msgid "Please read the sentence aloud while staying in the frame."
+msgstr "لطفاً جمله را با صدای بلند بخوانید در حالی که داخل کادر می‌مانید."
+
+#: .\templates\accounts\login_verification.html:51
+msgid "Stop Recording"
+msgstr "توقف ضبط"
+
+#: .\templates\accounts\login_verification.html:66
+msgid "Continue to OTP"
+msgstr "ادامه به OTP"
+
+#: .\templates\accounts\password_reset_complete.html:4
+msgid "Password Reset Complete"
+msgstr "بازنشانی رمز عبور کامل شد"
+
+#: .\templates\accounts\password_reset_complete.html:10
+msgid "Password Reset Successful"
+msgstr "بازنشانی رمز عبور موفق"
+
+#: .\templates\accounts\password_reset_complete.html:11
+msgid ""
+"Your password has been changed. You can now log in with your new password."
+msgstr "رمز عبور شما تغییر کرده است. اکنون می‌توانید با رمز جدید وارد شوید."
+
+#: .\templates\accounts\password_reset_complete.html:12
+msgid "Go to Login"
+msgstr "رفتن به ورود"
+
+#: .\templates\accounts\password_reset_email.html:6
+#: .\templates\accounts\password_reset_email.txt.py:1
+#: .\templates\verification\emails\otp_email.html:6
+#: .\templates\verification\emails\otp_email.txt.py:1
+#, python-format
+msgid "Dear %(username)s,"
+msgstr "%(username)s عزیز،"
+
+#: .\templates\accounts\password_reset_email.html:7
+#: .\templates\accounts\password_reset_email.txt.py:3
+msgid "You're receiving this email because you requested a password reset."
+msgstr "این ایمیل را دریافت می‌کنید چون درخواست بازنشانی رمز عبور داده‌اید."
+
+#: .\templates\accounts\password_reset_email.html:8
+msgid "Reset your password"
+msgstr "بازنشانی رمز عبور"
+
+#: .\templates\accounts\password_reset_email.html:9
+#: .\templates\accounts\password_reset_email.txt.py:7
+msgid ""
+"This link is valid for 30 minutes. If you didn't request this, you can "
+"ignore this email."
+msgstr ""
+"این لینک به مدت ۳۰ دقیقه معتبر است. اگر این درخواست را نداده‌اید، می‌توانید "
+"این ایمیل را نادیده بگیرید."
+
+#: .\templates\accounts\password_reset_email.txt.py:5
+msgid "Reset your password:"
+msgstr "بازنشانی رمز عبور:"
+
+#: .\templates\accounts\password_reset_sent.html:4
+msgid "Reset Email Sent"
+msgstr "ایمیل بازنشانی ارسال شد"
+
+#: .\templates\accounts\password_reset_sent.html:10
+msgid "Check Your Email"
+msgstr "ایمیل خود را بررسی کنید"
+
+#: .\templates\accounts\password_reset_sent.html:11
+msgid ""
+"If an account with that email exists, we've sent password reset instructions."
+msgstr ""
+"اگر حسابی با آن ایمیل وجود داشته باشد، دستورالعمل‌های بازنشانی رمز عبور را "
+"ارسال کرده‌ایم."
+
+#: .\templates\accounts\password_reset_sent.html:12
+msgid "Return to Login"
+msgstr "بازگشت به ورود"
+
+#: .\templates\accounts\profile.html:33
+msgid "Current Image:"
+msgstr "تصویر فعلی:"
+
+#: .\templates\accounts\profile.html:34
+msgid "Current avatar"
+msgstr "آواتار فعلی"
+
+#: .\templates\accounts\profile.html:39
+msgid "Change Image:"
+msgstr "تغییر تصویر:"
+
+#: .\templates\accounts\reset_password.html:4
+msgid "Set New Password"
+msgstr "تنظیم رمز عبور جدید"
+
+#: .\templates\accounts\reset_password.html:10
+msgid "Set a New Password"
+msgstr "یک رمز عبور جدید تنظیم کنید"
+
+#: .\templates\accounts\reset_password.html:36
+msgid "Reset Password"
+msgstr "بازنشانی رمز عبور"
+
+#: .\templates\accounts\signup.html:7
+msgid "Create Account"
+msgstr "ایجاد حساب"
+
+#: .\templates\accounts\signup.html:12
+msgid "Already have an account?"
+msgstr "از قبل حساب دارید؟"
+
+#: .\templates\accounts\signup.html:12
+msgid "Log in"
+msgstr "ورود"
+
+#: .\templates\add.html:5 .\templates\add.html:12 .\templates\base.html:48
+msgid "Add Poem"
+msgstr "افزودن شعر"
+
+#: .\templates\add.html:40 .\templates\add__.html:49
+msgid "Submit"
+msgstr "ارسال"
+
+#: .\templates\add__.html:6
+msgid "Add New Poem"
+msgstr "افزودن شعر جدید"
+
+#: .\templates\base.html:26 .\templates\base.html:116
+msgid "Poemino"
+msgstr "شعرینو"
+
+#: .\templates\base.html:31
+msgid "Toggle navigation"
+msgstr "تغییر ناوبری"
+
+#: .\templates\base.html:40 .\templates\index.html:6 .\templates\recent.html:5
+msgid "Home"
+msgstr "خانه"
+
+#: .\templates\base.html:55
+msgid "Recent Poems"
+msgstr "شعرهای اخیر"
+
+#: .\templates\base.html:70
+msgid "Request Dashboard"
+msgstr "درخواست داشبورد"
+
+#: .\templates\base.html:115
+msgid "✦ Collection of Pure Persian Poems ✦"
+msgstr "✦ مجموعه اشعار ناب پارسی ✦"
+
+#: .\templates\base.html:117
+msgid ""
+"Each page, the beginning of a journey into the world of poetry and emotion"
+msgstr "هر صفحه، آغاز سفری به دنیای شعر و احساس"
+
+#: .\templates\base.html:124
+msgid "✧ Author of these heart-warming poems: Master Rasouli Zadeh ✧"
+msgstr "✧ سراینده این اشعار دل‌نشین: استاد رسولی‌زاده ✧"
+
+#: .\templates\base.html:127
+msgid "Bale"
+msgstr "بله"
+
+#: .\templates\base.html:128
+msgid "Internal Networks"
+msgstr "شبکه‌های داخلی"
+
+#: .\templates\detail-poem.html:60 .\templates\index.html:57
+#: .\templates\recent.html:40
+msgid "Author Avatar"
+msgstr "آواتار نویسنده"
+
+#: .\templates\detail-poem.html:81 .\templates\detail-poem.html:84
+#: .\templates\index.html:56 .\templates\recent.html:68
+#: .\templates\recent.html:71 .\templates\recent.html:74
+#: .\templates\recent.html:79
+msgid "Master"
+msgstr "استاد"
+
+#: .\templates\detail-poem.html:130
+msgid "Audio Pom"
+msgstr "شعر صوتی"
+
+#: .\templates\detail-poem.html:151
+msgid "Update"
+msgstr "به‌روزرسانی"
+
+#: .\templates\detail-poem.html:159
+msgid "Delete"
+msgstr "حذف"
+
+#: .\templates\index.html:43 .\templates\index.html:60
+#: .\templates\recent.html:99
+msgid "No poems found."
+msgstr "شعری یافت نشد."
+
+#: .\templates\index.html:54 .\templates\recent.html:26
+msgid "Detail Poem"
+msgstr "جزئیات شعر"
+
+#: .\templates\partials\nav_search_filter.html:10
+#: .\templates\partials\nav_search_filter.html:91
+#: .\templates\partials\poem_search_filter.html:6
+msgid "Search"
+msgstr "جستجو"
+
+#: .\templates\partials\nav_search_filter.html:13
+msgid "Search poems"
+msgstr "جستجوی شعرها"
+
+#: .\templates\partials\nav_search_filter.html:23
+msgid "Select poem type"
+msgstr "انتخاب نوع شعر"
+
+#: .\templates\partials\nav_search_filter.html:33
+#: .\templates\partials\nav_search_filter.html:82
+#: .\templates\partials\nav_search_filter.html:124
+msgid "Poem Status"
+msgstr "وضعیت شعر"
+
+#: .\templates\partials\nav_search_filter.html:35
+msgid "Select poem status"
+msgstr "انتخاب وضعیت شعر"
+
+#: .\templates\partials\nav_search_filter.html:44
+msgid "Filter poems"
+msgstr "فیلتر شعرها"
+
+#: .\templates\partials\nav_search_filter.html:46
+msgid "Filter"
+msgstr "فیلتر"
+
+#: .\templates\partials\nav_search_filter.html:63
+#: .\templates\partials\nav_search_filter.html:106
+msgid "Poem Title"
+msgstr "عنوان شعر"
+
+#: .\templates\partials\nav_search_filter.html:75
+#: .\templates\partials\nav_search_filter.html:118
+msgid "Poem Date"
+msgstr "تاریخ شعر"
+
+#: .\templates\partials\nav_search_filter.html:128
+#: .\templates\partials\poem_search_filter.html:59
+msgid "Clear All"
+msgstr "پاک کردن همه"
+
+#: .\templates\partials\poem_search_filter.html:8
+msgid "Search poems, titles, or authors..."
+msgstr "جستجوی شعرها، عناوین یا نویسندگان..."
+
+#: .\templates\partials\poem_search_filter.html:17
+#: .\templates\partials\poem_search_filter.html:19
+msgid "Title"
+msgstr "عنوان"
+
+#: .\templates\partials\poem_search_filter.html:24
+msgid "All"
+msgstr "همه"
+
+#: .\templates\partials\poem_search_filter.html:31
+msgid "Created From"
+msgstr "ایجاد از"
+
+#: .\templates\partials\poem_search_filter.html:35
+msgid "Created To"
+msgstr "ایجاد تا"
+
+#: .\templates\partials\poem_search_filter.html:39
+msgid "Modified From"
+msgstr "ویرایش از"
+
+#: .\templates\partials\poem_search_filter.html:43
+msgid "Modified To"
+msgstr "ویرایش تا"
+
+#: .\templates\partials\poem_search_filter.html:47
+msgid "Apply"
+msgstr "اعمال"
+
+#: .\templates\poem_delete.html:10
+msgid "Are you sure you want to delete"
+msgstr "آیا مطمئن هستید که می‌خواهید حذف کنید"
+
+#: .\templates\poem_delete.html:13
+msgid "Yes, Delete"
+msgstr "بله، حذف کن"
+
+#: .\templates\poem_update.html:4 .\templates\poem_update.html:9
+msgid "Update Poem"
+msgstr "به‌روزرسانی شعر"
+
+#: .\templates\verification\camera.html:4
+#: .\templates\verification\camera.html:10
+msgid "Camera Verification"
+msgstr "تأیید دوربین"
+
+#: .\templates\verification\camera.html:11
+msgid "Please capture a photo of your face before requesting OTP."
+msgstr "لطفاً قبل از درخواست OTP یک عکس از چهره خود بگیرید."
+
+#: .\templates\verification\camera.html:30
+#: .\templates\verification\challenge.html:36
+msgid "Submit Verification"
+msgstr "ارسال تأیید"
+
+#: .\templates\verification\challenge.html:4
+#: .\templates\verification\challenge.html:10
+msgid "Verification Challenge"
+msgstr "چالش تأیید"
+
+#: .\templates\verification\challenge.html:14
+msgid "Please read the following text aloud:"
+msgstr "لطفاً متن زیر را با صدای بلند بخوانید:"
+
+#: .\templates\verification\challenge.html:19
+msgid "Record a video of yourself reading the text."
+msgstr "یک ویدیو از خودتان در حال خواندن متن ضبط کنید."
+
+#: .\templates\verification\challenge.html:69
+msgid "Camera/microphone access denied."
+msgstr "دسترسی به دوربین/میکروفون رد شد."
+
+#: .\templates\verification\challenge.html:84
+msgid "Recording finished."
+msgstr "ضبط تمام شد."
+
+#: .\templates\verification\emails\otp_email.html:7
+#: .\templates\verification\emails\otp_email.txt.py:2
+msgid "Your dashboard verification OTP is:"
+msgstr "کد OTP تأیید داشبورد شما:"
+
+#: .\templates\verification\emails\otp_email.html:9
+#: .\templates\verification\emails\otp_email.txt.py:3
+msgid "This code is valid for 10 minutes and can only be used once."
+msgstr "این کد به مدت ۱۰ دقیقه معتبر است و فقط یک بار قابل استفاده است."
+
+#: .\templates\verification\start.html:4 .\templates\verification\start.html:10
+msgid "Dashboard Verification"
+msgstr "تأیید داشبورد"
+
+#: .\templates\verification\start.html:11
+msgid "You need to verify your identity to access the dashboard."
+msgstr "برای دسترسی به داشبورد باید هویت خود را تأیید کنید."
+
+#: .\templates\verification\start.html:14
+msgid "Send OTP to Email"
+msgstr "ارسال OTP به ایمیل"
+
+#: .\templates\verification\verify_otp.html:11
+msgid "Enter the 6-digit code sent to your email."
+msgstr "کد ۶ رقمی ارسال‌شده به ایمیل خود را وارد کنید."
+
+#: .\verification\apps.py:8
+msgid "Verification"
+msgstr "تأیید"
+
+#: .\verification\email_service.py:14
+msgid "Your Dashboard Verification OTP"
+msgstr "کد OTP تأیید داشبورد شما"

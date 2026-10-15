@@ -1,0 +1,15 @@
+{% extends "errors/error_base.html" %}
+
+{% block title %}400 | درخواست نامعتبر{% endblock title %}
+
+{% block icon %}bi-exclamation-circle{% endblock icon %}
+
+{% block error_code %}400{% endblock error_code %}
+
+{% block error_title %}درخواست نامعتبر{% endblock error_title %}
+
+{% block error_message %}
+درخواستی که ارسال کرده‌اید معتبر نیست یا سرور نمی‌تواند آن را پردازش کند.
+{% endblock error_message %}
+
+{% block status_code %}400{% endblock status_code %}
